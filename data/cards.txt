@@ -1,0 +1,640 @@
+QAT1 Team Photo FOIL - Qatar
+QAT2 Team Logo - Qatar
+QAT3 Saad Al Sheeb - Qatar
+QAT4 Meshaal Barsham - Qatar
+QAT5 Homam Ahmed - Qatar
+QAT6 Bassam Alrawi - Qatar
+QAT7 Abdulkarim Hassan - Qatar
+QAT8 Musaab Khidir - Qatar
+QAT9 Boualem Khoukhi - Qatar
+QAT10 Pedro Miguel - Qatar
+QAT11 Tarek Salman - Qatar
+QAT12 Karim Boudiaf - Qatar
+QAT13 Abdulaziz Hatem - Qatar
+QAT14 Assim Omer Madibo - Qatar
+QAT15 Yousuf Abdurisag - Qatar
+QAT16 Akram Hassan Afif - Qatar
+QAT17 Ahmad Alaaeldin - Qatar
+QAT18 Hasan Al-Haydos - Qatar
+QAT19 Almoez Ali - Qatar
+QAT20 Mohammed Muntari - Qatar
+ECU1 Team Photo FOIL - Ecuador
+ECU2 Team Logo - Ecuador
+ECU3 Hernán Galíndez - Ecuador
+ECU4 Alexander Domínguez - Ecuador
+ECU5 Robert Arboleda - Ecuador
+ECU6 Byron Castillo - Ecuador
+ECU7 Pervis Estupiñán - Ecuador
+ECU8 Piero Hincapié - Ecuador
+ECU9 Ángelo Preciado - Ecuador
+ECU10 Félix Torres - Ecuador
+ECU11 Moisés Caicedo - Ecuador
+ECU12 Alan Franco - Ecuador
+ECU13 Carlos Gruezo - Ecuador
+ECU14 Jhegson Méndez - Ecuador
+ECU15 Jeremy Sarmiento - Ecuador
+ECU16 Michael Estrada - Ecuador
+ECU17 Ángel Mena - Ecuador
+ECU18 Gonzalo Plata - Ecuador
+ECU19 Ayrton Preciado - Ecuador
+ECU20 Enner Valencia - Ecuador
+SEN1 Team Photo FOIL - Senegal
+SEN2 Team Logo - Senegal
+SEN3 Édouard Mendy - Senegal
+SEN4 Alfred Gomis - Senegal
+SEN5 Saliou Ciss - Senegal
+SEN6 Pape Abou Cissé - Senegal
+SEN7 Abdou Diallo - Senegal
+SEN8 Kalidou Koulibaly - Senegal
+SEN9 Ibrahima Mbaye - Senegal
+SEN10 Bouna Sarr - Senegal
+SEN11 Krépin Diatta - Senegal
+SEN12 Idrissa Gueye - Senegal
+SEN13 Pape Gueye - Senegal
+SEN14 Cheikhou Kouyaté - Senegal
+SEN15 Nampalys Mendy - Senegal
+SEN16 Boulaye Dia - Senegal
+SEN17 Famara Diédhiou - Senegal
+SEN18 Bamba Dieng - Senegal
+SEN19 Sadio Mané - Senegal
+SEN20 Ismaïla Sarr - Senegal
+NED1 Team Photo FOIL - Netherlands
+NED2 Team Logo - Netherlands
+NED3 Justin Bijlow - Netherlands
+NED4 Jasper Cillessen - Netherlands
+NED5 Daley Blind - Netherlands
+NED6 Matthijs de Ligt - Netherlands
+NED7 Stefan de Vrij - Netherlands
+NED8 Denzel Dumfries - Netherlands
+NED9 Virgil van Dijk - Netherlands
+NED10 Steven Berghuis - Netherlands
+NED11 Frenkie de Jong - Netherlands
+NED12 Ryan Gravenberch - Netherlands
+NED13 Davy Klaassen - Netherlands
+NED14 Teun Koopmeiners - Netherlands
+NED15 Georginio Wijnaldum - Netherlands
+NED16 Steven Bergwijn - Netherlands
+NED17 Arnaut Danjuma - Netherlands
+NED18 Memphis Depay - Netherlands
+NED19 Cody Gakpo - Netherlands
+NED20 Donyell Malen - Netherlands
+ENG1 Team Photo FOIL - England
+ENG2 Team Logo - England
+ENG3 Jordan Pickford - England
+ENG4 Aaron Ramsdale - England
+ENG5 Trent Alexander-Arnold - England
+ENG6 Conor Coady - England
+ENG7 Harry Maguire - England
+ENG8 Luke Shaw - England
+ENG9 John Stones - England
+ENG10 Kyle Walker - England
+ENG11 Jude Bellingham - England
+ENG12 Jack Grealish - England
+ENG13 Jordan Henderson - England
+ENG14 Mason Mount - England
+ENG15 Kalvin Phillips - England
+ENG16 Declan Rice - England
+ENG17 Phil Foden - England
+ENG18 Harry Kane - England
+ENG19 Bukayo Saka - England
+ENG20 Raheem Sterling - England
+IRN1 Team Photo FOIL - Iran
+IRN2 Team Logo - Iran
+IRN3 Amir Abedzadeh - Iran
+IRN4 Alireza Beiranvand - Iran
+IRN5 Ehsan Hajsafi - Iran
+IRN6 Majid Hosseini - Iran
+IRN7 Hossein Kanaani - Iran
+IRN8 Shoja Khalilzadeh - Iran
+IRN9 Milad Mohammadi - Iran
+IRN10 Sadegh Moharrami - Iran
+IRN11 Omid Noorafkan - Iran
+IRN12 Vahid Amiri - Iran
+IRN13 Saeid Ezatolahi - Iran
+IRN14 Ali Gholizadeh - Iran
+IRN15 Alireza Jahanbakhsh - Iran
+IRN16 Ahmad Nourollahi - Iran
+IRN17 Karim Ansarifard - Iran
+IRN18 Sardar Azmoun - Iran
+IRN19 Saman Ghoddos - Iran
+IRN20 Mehdi Taremi - Iran
+USA1 Team Photo FOIL - USA
+USA2 Team Logo - USA
+USA3 Matt Turner - USA
+USA4 Zack Steffen - USA
+USA5 Sergiño Dest - USA
+USA6 Aaron Long - USA
+USA7 Chris Richards - USA
+USA8 Antonee Robinson - USA
+USA9 DeAndre Yedlin - USA
+USA10 Walker Zimmerman - USA
+USA11 Brenden Aaronson - USA
+USA12 Kellyn Acosta - USA
+USA13 Tyler Adams - USA
+USA14 Weston McKennie - USA
+USA15 Yunus Musah - USA
+USA16 Jesús Ferreira - USA
+USA17 Ricardo Pepi - USA
+USA18 Christian Pulisic - USA
+USA19 Giovanni Reyna - USA
+USA20 Timothy Weah - USA
+WAL1 Team Photo FOIL - Wales
+WAL2 Team Logo - Wales
+WAL3 Danny Ward - Wales
+WAL4 Wayne Hennessey - Wales
+WAL5 Ethan Ampadu - Wales
+WAL6 Ben Davies - Wales
+WAL7 Chris Gunter - Wales
+WAL8 Chris Mepham - Wales
+WAL9 Connor Roberts - Wales
+WAL10 Joe Rodon - Wales
+WAL11 Neco Williams - Wales
+WAL12 Joe Allen - Wales
+WAL13 Joe Morrell - Wales
+WAL14 Aaron Ramsey - Wales
+WAL15 Jonathan Williams - Wales
+WAL16 Harry Wilson - Wales
+WAL17 Gareth Bale - Wales
+WAL18 Daniel James - Wales
+WAL19 Brennan Johnson - Wales
+WAL20 Kieffer Moore - Wales
+ARG1 Team Photo FOIL - Argentina
+ARG2 Team Logo - Argentina
+ARG3 Emiliano Martínez - Argentina
+ARG4 Franco Armani - Argentina
+ARG5 Marcos Acuña - Argentina
+ARG6 Nahuel Molina - Argentina
+ARG7 Nicolás Otamendi - Argentina
+ARG8 Germán Pezzella - Argentina
+ARG9 Cristian Romero - Argentina
+ARG10 Rodrigo De Paul - Argentina
+ARG11 Ángel Di María - Argentina
+ARG12 Giovani Lo Celso - Argentina
+ARG13 Leandro Paredes - Argentina
+ARG14 Guido Rodríguez - Argentina
+ARG15 Julián Álvarez - Argentina
+ARG16 Joaquín Correa - Argentina
+ARG17 Alejandro Gómez - Argentina
+ARG18 Nicolás González - Argentina
+ARG19 Lautaro Martínez - Argentina
+ARG20 Lionel Messi - Argentina
+KSA1 Team Photo FOIL - Saudi Arabia
+KSA2 Team Logo - Saudi Arabia
+KSA3 Mohammed Al-Owais - Saudi Arabia
+KSA4 Mohammed Al-Rubaie - Saudi Arabia
+KSA5 Abdulelah Al-Amri - Saudi Arabia
+KSA6 Ali Al-Boleahi - Saudi Arabia
+KSA7 Mohammed Al-Burayk - Saudi Arabia
+KSA8 Sultan Al-Ghannam - Saudi Arabia
+KSA9 Yasser Al-Shahrani - Saudi Arabia
+KSA10 Hassan Al-Tambakti - Saudi Arabia
+KSA11 Abdullah Madu - Saudi Arabia
+KSA12 Salman Al-Faraj - Saudi Arabia
+KSA13 Abdulelah Al-Malki - Saudi Arabia
+KSA14 Sami Al-Najei - Saudi Arabia
+KSA15 Hattan Bahebri - Saudi Arabia
+KSA16 Mohamed Kanno - Saudi Arabia
+KSA17 Abdullah Otayf - Saudi Arabia
+KSA18 Firas Al-Buraikan - Saudi Arabia
+KSA19 Salem Al-Dawsari - Saudi Arabia
+KSA20 Khalid Al-Ghannam - Saudi Arabia
+MEX1 Team Photo FOIL - Mexico
+MEX2 Team Logo - Mexico
+MEX3 Guillermo Ochoa - Mexico
+MEX4 Alfredo Talavera - Mexico
+MEX5 Néstor Araújo - Mexico
+MEX6 Jesús Gallardo - Mexico
+MEX7 César Montes - Mexico
+MEX8 Héctor Moreno - Mexico
+MEX9 Luis Romo - Mexico
+MEX10 Jorge Sánchez - Mexico
+MEX11 Edson Álvarez - Mexico
+MEX12 Jesús Manuel Corona - Mexico
+MEX13 Andrés Guardado - Mexico
+MEX14 Érick Gutiérrez - Mexico
+MEX15 Héctor Herrera - Mexico
+MEX16 Diego Lainez - Mexico
+MEX17 Carlos Rodríguez - Mexico
+MEX18 Rogelio Funes Mori - Mexico
+MEX19 Raúl Jiménez - Mexico
+MEX20 Hirving Lozano - Mexico
+POL1 Team Photo FOIL - Poland
+POL2 Team Logo - Poland
+POL3 Wojciech Szczęsny - Poland
+POL4 Łukasz Skorupski - Poland
+POL5 Jan Bednarek - Poland
+POL6 Bartosz Bereszyński - Poland
+POL7 Matty Cash - Poland
+POL8 Kamil Glik - Poland
+POL9 Tymoteusz Puchacz - Poland
+POL10 Maciej Rybus - Poland
+POL11 Kamil Jóźwiak - Poland
+POL12 Mateusz Klich - Poland
+POL13 Grzegorz Krychowiak - Poland
+POL14 Jakub Moder - Poland
+POL15 Sebastian Szymański - Poland
+POL16 Piotr Zieliński - Poland
+POL17 Robert Lewandowski - Poland
+POL18 Arkadiusz Milik - Poland
+POL19 Krzysztof Piątek - Poland
+POL20 Karol Świderski - Poland
+FRA1 Team Photo FOIL - France
+FRA2 Team Logo - France
+FRA3 Hugo Lloris - France
+FRA4 Mike Maignan - France
+FRA5 Lucas Hernández - France
+FRA6 Theo Hernández - France
+FRA7 Presnel Kimpembe - France
+FRA8 Jules Koundé - France
+FRA9 Benjamin Pavard - France
+FRA10 Raphaël Varane - France
+FRA11 N’Golo Kanté - France
+FRA12 Paul Pogba - France
+FRA13 Adrien Rabiot - France
+FRA14 Aurélien Tchouaméni - France
+FRA15 Wissam Ben Yedder - France
+FRA16 Karim Benzema - France
+FRA17 Kingsley Coman - France
+FRA18 Antoine Griezmann - France
+FRA19 Kylian Mbappé - France
+FRA20 Christopher Nkunku - France
+AUS1 Team Photo FOIL - Australia
+AUS2 Team Logo - Australia
+AUS3 Mathew Ryan - Australia
+AUS4 Andrew Redmayne - Australia
+AUS5 Aziz Behich - Australia
+AUS6 Miloš Degenek - Australia
+AUS7 Rhyan Grant - Australia
+AUS8 Joel King - Australia
+AUS9 Trent Sainsbury - Australia
+AUS10 Harry Souttar - Australia
+AUS11 Ajdin Hrustić - Australia
+AUS12 Jackson Irvine - Australia
+AUS13 James Jeggo - Australia
+AUS14 Awer Mabil - Australia
+AUS15 Aaron Mooy - Australia
+AUS16 Martin Boyle - Australia
+AUS17 Mitchell Duke - Australia
+AUS18 Craig Goodwin - Australia
+AUS19 Mathew Leckie - Australia
+AUS20 Adam Taggart - Australia
+DEN1 Team Photo FOIL - Denmark
+DEN2 Team Logo - Denmark
+DEN3 Kasper Schmeichel - Denmark
+DEN4 Frederik Rønnow - Denmark
+DEN5 Andreas Christensen - Denmark
+DEN6 Simon Kjær - Denmark
+DEN7 Joakim Mæhle - Denmark
+DEN8 Jens Stryger Larsen - Denmark
+DEN9 Jannik Vestergaard - Denmark
+DEN10 Mikkel Damsgaard - Denmark
+DEN11 Thomas Delaney - Denmark
+DEN12 Christian Eriksen - Denmark
+DEN13 Pierre Emile Højbjerg - Denmark
+DEN14 Christian Nørgaard - Denmark
+DEN15 Daniel Wass - Denmark
+DEN16 Martin Braithwaite - Denmark
+DEN17 Kasper Dolberg - Denmark
+DEN18 Yussuf Poulsen - Denmark
+DEN19 Andreas Skov Olsen - Denmark
+DEN20 Jonas Wind - Denmark
+TUN1 Team Photo FOIL - Tunisia
+TUN2 Team Logo - Tunisia
+TUN3 Bechir Ben Saïd - Tunisia
+TUN4 Farouk Ben Mustapha - Tunisia
+TUN5 Dylan Bronn - Tunisia
+TUN6 Mohamed Dräger - Tunisia
+TUN7 Bilel Ifa - Tunisia
+TUN8 Ali Maâloul - Tunisia
+TUN9 Hamza Mathlouthi - Tunisia
+TUN10 Yassine Meriah - Tunisia
+TUN11 Montassar Talbi - Tunisia
+TUN12 Mohamed Ali Ben Romdhane - Tunisia
+TUN13 Wahbi Khazri - Tunisia
+TUN14 Aïssa Laïdouni - Tunisia
+TUN15 Ferjani Sassi - Tunisia
+TUN16 Ellyes Skhiri - Tunisia
+TUN17 Anis Slimane - Tunisia
+TUN18 Seifeddine Jaziri - Tunisia
+TUN19 Youssef Msakni - Tunisia
+TUN20 Naïm Sliti - Tunisia
+ESP1 Team Photo FOIL - Spain
+ESP2 Team Logo - Spain
+ESP3 Unai Simón - Spain
+ESP4 Robert Sánchez - Spain
+ESP5 César Azpilicueta - Spain
+ESP6 Eric García - Spain
+ESP7 Jordi Alba - Spain
+ESP8 Aymeric Laporte - Spain
+ESP9 Pau Torres - Spain
+ESP10 Gavi - Spain
+ESP11 Koke - Spain
+ESP12 Marcos Llorente - Spain
+ESP13 Pedri - Spain
+ESP14 Rodri - Spain
+ESP15 Sergio Busquets - Spain
+ESP16 Dani Olmo - Spain
+ESP17 Ansu Fati - Spain
+ESP18 Ferran Torres - Spain
+ESP19 Álvaro Morata - Spain
+ESP20 Pablo Sarabia - Spain
+CRC1 Team Photo FOIL - Costa Rica
+CRC2 Team Logo - Costa Rica
+CRC3 Keylor Navas - Costa Rica
+CRC4 Leonel Moreira - Costa Rica
+CRC5 Ricardo Blanco - Costa Rica
+CRC6 Francisco Calvo - Costa Rica
+CRC7 Óscar Duarte - Costa Rica
+CRC8 Keysher Fuller - Costa Rica
+CRC9 Bryan Oviedo - Costa Rica
+CRC10 Juan Pablo Vargas - Costa Rica
+CRC11 Kendall Waston - Costa Rica
+CRC12 Celso Borges - Costa Rica
+CRC13 Orlando Galo - Costa Rica
+CRC14 Bryan Ruiz - Costa Rica
+CRC15 Yeltsin Tejeda - Costa Rica
+CRC16 Jewison Bennette - Costa Rica
+CRC17 Joel Campbell - Costa Rica
+CRC18 Anthony Contreras - Costa Rica
+CRC19 Gerson Torres - Costa Rica
+CRC20 Johan Venegas - Costa Rica
+GER1 Team Photo FOIL - Germany
+GER2 Team Logo - Germany
+GER3 Manuel Neuer - Germany
+GER4 Marc-André ter Stegen - Germany
+GER5 Matthias Ginter - Germany
+GER6 Robin Gosens - Germany
+GER7 Thilo Kehrer - Germany
+GER8 David Raum - Germany
+GER9 Antonio Rüdiger - Germany
+GER10 Niklas Süle - Germany
+GER11 Leon Goretzka - Germany
+GER12 İlkay Gündoğan - Germany
+GER13 Kai Havertz - Germany
+GER14 Jonas Hofmann - Germany
+GER15 Joshua Kimmich - Germany
+GER16 Serge Gnabry - Germany
+GER17 Thomas Müller - Germany
+GER18 Marco Reus - Germany
+GER19 Leroy Sané - Germany
+GER20 Timo Werner - Germany
+JPN1 Team Photo FOIL - Japan
+JPN2 Team Logo - Japan
+JPN3 Shuichi Gonda - Japan
+JPN4 Eiji Kawashima - Japan
+JPN5 Yuto Nagatomo - Japan
+JPN6 Yuta Nakayama - Japan
+JPN7 Takehiro Tomiyasu - Japan
+JPN8 Miki Yamane - Japan
+JPN9 Maya Yoshida - Japan
+JPN10 Wataru Endo - Japan
+JPN11 Genki Haraguchi - Japan
+JPN12 Hidemasa Morita - Japan
+JPN13 Gaku Shibasaki - Japan
+JPN14 Ao Tanaka - Japan
+JPN15 Takuma Asano - Japan
+JPN16 Kyogo Furuhashi - Japan
+JPN17 Junya Ito - Japan
+JPN18 Takumi Minamino - Japan
+JPN19 Kaoru Mitoma - Japan
+JPN20 Yuya Osako - Japan
+BEL1 Team Photo FOIL - Belgium
+BEL2 Team Logo - Belgium
+BEL3 Thibaut Courtois - Belgium
+BEL4 Simon Mignolet - Belgium
+BEL5 Toby Alderweireld - Belgium
+BEL6 Timothy Castagne - Belgium
+BEL7 Jason Denayer - Belgium
+BEL8 Thomas Meunier - Belgium
+BEL9 Jan Vertonghen - Belgium
+BEL10 Yannick Carrasco - Belgium
+BEL11 Kevin De Bruyne - Belgium
+BEL12 Charles De Ketelaere - Belgium
+BEL13 Thorgan Hazard - Belgium
+BEL14 Youri Tielemans - Belgium
+BEL15 Hans Vanaken - Belgium
+BEL16 Axel Witsel - Belgium
+BEL17 Jérémy Doku - Belgium
+BEL18 Eden Hazard - Belgium
+BEL19 Romelu Lukaku - Belgium
+BEL20 Dries Mertens - Belgium
+CAN1 Team Photo FOIL - Canada
+CAN2 Team Logo - Canada
+CAN3 Milan Borjan - Canada
+CAN4 Maxime Crépeau - Canada
+CAN5 Samuel Adekugbe - Canada
+CAN6 Doneil Henry - Canada
+CAN7 Alistair Johnston - Canada
+CAN8 Richie Laryea - Canada
+CAN9 Kamal Miller - Canada
+CAN10 Steven Vitória - Canada
+CAN11 Tajon Buchanan - Canada
+CAN12 Alphonso Davies - Canada
+CAN13 Stephen Eustáquio - Canada
+CAN14 Atiba Hutchinson - Canada
+CAN15 Mark-Anthony Kaye - Canada
+CAN16 Jonathan Osorio - Canada
+CAN17 Samuel Piette - Canada
+CAN18 Jonathan David - Canada
+CAN19 David Junior Hoilett - Canada
+CAN20 Cyle Larin - Canada
+MAR1 Team Photo FOIL - Morocco
+MAR2 Team Logo - Morocco
+MAR3 Yassine Bounou - Morocco
+MAR4 Munir Mohamedi - Morocco
+MAR5 Nayef Aguerd - Morocco
+MAR6 Achraf Hakimi - Morocco
+MAR7 Adam Masina - Morocco
+MAR8 Samy Mmaee - Morocco
+MAR9 Romain Saïss - Morocco
+MAR10 Selim Amallah - Morocco
+MAR11 Sofyan Amrabat - Morocco
+MAR12 Aymen Barkok - Morocco
+MAR13 Ilias Chair - Morocco
+MAR14 Imrân Louza - Morocco
+MAR15 Sofiane Boufal - Morocco
+MAR16 Ayoub El Kaabi - Morocco
+MAR17 Youssef En-Nesyri - Morocco
+MAR18 Ryan Mmaee - Morocco
+MAR19 Munir - Morocco
+MAR20 Tarik Tissoudali - Morocco
+CRO1 Team Photo FOIL - Croatia
+CRO2 Team Logo - Croatia
+CRO3 Dominik Livaković - Croatia
+CRO4 Ivica Ivušić - Croatia
+CRO5 Duje Ćaleta-Car - Croatia
+CRO6 Joško Gvardiol - Croatia
+CRO7 Josip Juranović - Croatia
+CRO8 Dejan Lovren - Croatia
+CRO9 Borna Sosa - Croatia
+CRO10 Domagoj Vida - Croatia
+CRO11 Marcelo Brozović - Croatia
+CRO12 Mateo Kovačić - Croatia
+CRO13 Luka Modrić - Croatia
+CRO14 Mario Pašalić - Croatia
+CRO15 Ivan Perišić - Croatia
+CRO16 Nikola Vlašić - Croatia
+CRO17 Josip Brekalo - Croatia
+CRO18 Andrej Kramarić - Croatia
+CRO19 Marko Livaja - Croatia
+CRO20 Mislav Oršić - Croatia
+BRA1 Team Photo FOIL - Brazil
+BRA2 Team Logo - Brazil
+BRA3 Alisson - Brazil
+BRA4 Ederson - Brazil
+BRA5 Alex Sandro - Brazil
+BRA6 Danilo - Brazil
+BRA7 Éder Militão - Brazil
+BRA8 Marquinhos - Brazil
+BRA9 Thiago Silva - Brazil
+BRA10 Casemiro - Brazil
+BRA11 Philippe Coutinho - Brazil
+BRA12 Fabinho - Brazil
+BRA13 Fred - Brazil
+BRA14 Lucas Paquetá - Brazil
+BRA15 Antony - Brazil
+BRA16 Gabriel Jesus - Brazil
+BRA17 Neymar Jr - Brazil
+BRA18 Raphinha - Brazil
+BRA19 Richarlison - Brazil
+BRA20 Vinícius Jr - Brazil
+SRB1 Team Photo FOIL - Serbia
+SRB2 Team Logo - Serbia
+SRB3 Predrag Rajković - Serbia
+SRB4 Vanja Milinković-Savić - Serbia
+SRB5 Nikola Milenković - Serbia
+SRB6 Strahinja Pavlović - Serbia
+SRB7 Miloš Veljković - Serbia
+SRB8 Filip Đuričić - Serbia
+SRB9 Nemanja Gudelj - Serbia
+SRB10 Filip Kostić - Serbia
+SRB11 Darko Lazović - Serbia
+SRB12 Saša Lukić - Serbia
+SRB13 Nemanja Maksimović - Serbia
+SRB14 Sergej Milinković-Savić - Serbia
+SRB15 Nemanja Radonjić - Serbia
+SRB16 Andrija Živković - Serbia
+SRB17 Luka Jović - Serbia
+SRB18 Aleksandar Mitrović - Serbia
+SRB19 Dušan Tadić - Serbia
+SRB20 Dušan Vlahović - Serbia
+SUI1 Team Photo FOIL - Switzerland
+SUI2 Team Logo - Switzerland
+SUI3 Yann Sommer - Switzerland
+SUI4 Gregor Kobel - Switzerland
+SUI5 Manuel Akanji - Switzerland
+SUI6 Nico Elvedi - Switzerland
+SUI7 Kevin Mbabu - Switzerland
+SUI8 Ricardo Rodríguez - Switzerland
+SUI9 Fabian Schär - Switzerland
+SUI10 Silvan Widmer - Switzerland
+SUI11 Remo Freuler - Switzerland
+SUI12 Xherdan Shaqiri - Switzerland
+SUI13 Djibril Sow - Switzerland
+SUI14 Granit Xhaka - Switzerland
+SUI15 Denis Zakaria - Switzerland
+SUI16 Steven Zuber - Switzerland
+SUI17 Breel Embolo - Switzerland
+SUI18 Noah Okafor - Switzerland
+SUI19 Haris Seferović - Switzerland
+SUI20 Ruben Vargas - Switzerland
+CMR1 Team Photo FOIL - Cameroon
+CMR2 Team Logo - Cameroon
+CMR3 André Onana - Cameroon
+CMR4 Devis Epassy - Cameroon
+CMR5 Jean-Charles Castelletto - Cameroon
+CMR6 Collins Fai - Cameroon
+CMR7 Olivier Mbaizo - Cameroon
+CMR8 Harold Moukoudi - Cameroon
+CMR9 Michael Ngadeu - Cameroon
+CMR10 Nouhou - Cameroon
+CMR11 Martin Hongla - Cameroon
+CMR12 Pierre Kunde - Cameroon
+CMR13 James Léa Siliki - Cameroon
+CMR14 Samuel Oum Gouet - Cameroon
+CMR15 André-Frank Zambo Anguissa - Cameroon
+CMR16 Vincent Aboubakar - Cameroon
+CMR17 Stéphane Bahoken - Cameroon
+CMR18 Eric Maxim Choupo-Moting - Cameroon
+CMR19 Nicolas Moumi Ngamaleu - Cameroon
+CMR20 Karl Toko Ekambi - Cameroon
+POR1 Team Photo FOIL - Portugal
+POR2 Team Logo - Portugal
+POR3 Diogo Costa - Portugal
+POR4 Rui Patrício - Portugal
+POR5 João Cancelo - Portugal
+POR6 José Fonte - Portugal
+POR7 Nuno Mendes - Portugal
+POR8 Pepe - Portugal
+POR9 Raphaël Guerreiro - Portugal
+POR10 Rúben Dias - Portugal
+POR11 Bernardo Silva - Portugal
+POR12 Bruno Fernandes - Portugal
+POR13 Danilo Pereira - Portugal
+POR14 João Moutinho - Portugal
+POR15 Renato Sanches - Portugal
+POR16 Rúben Neves - Portugal
+POR17 André Silva - Portugal
+POR18 Cristiano Ronaldo - Portugal
+POR19 Diogo Jota - Portugal
+POR20 Gonçalo Guedes - Portugal
+GHA1 Team Photo FOIL - Ghana
+GHA2 Team Logo - Ghana
+GHA3 Joe Wollacott - Ghana
+GHA4 Richard Ofori - Ghana
+GHA5 Daniel Amartey - Ghana
+GHA6 Abdul-Rahman Baba - Ghana
+GHA7 Alexander Djiku - Ghana
+GHA8 Gideon Mensah - Ghana
+GHA9 Jonathan Mensah - Ghana
+GHA10 Andy Yiadom - Ghana
+GHA11 Iddrisu Baba - Ghana
+GHA12 Mohammed Kudus - Ghana
+GHA13 Daniel-Kofi Kyereh - Ghana
+GHA14 Thomas Partey - Ghana
+GHA15 Mubarak Wakaso - Ghana
+GHA16 Felix Afena-Gyan - Ghana
+GHA17 André Ayew - Ghana
+GHA18 Jordan Ayew - Ghana
+GHA19 Issahaku Abdul Fatawu - Ghana
+GHA20 Kamaldeen Sulemana - Ghana
+URU1 Team Photo FOIL - Uruguay
+URU2 Team Logo - Uruguay
+URU3 Fernando Muslera - Uruguay
+URU4 Sergio Rochet - Uruguay
+URU5 Ronald Araújo - Uruguay
+URU6 Martín Cáceres - Uruguay
+URU7 José María Giménez - Uruguay
+URU8 Diego Godín - Uruguay
+URU9 Mathías Olivera - Uruguay
+URU10 Matías Viña - Uruguay
+URU11 Rodrigo Bentancur - Uruguay
+URU12 Giorgian De Arrascaeta - Uruguay
+URU13 Nicolás De La Cruz - Uruguay
+URU14 Lucas Torreira - Uruguay
+URU15 Federico Valverde - Uruguay
+URU16 Matías Vecino - Uruguay
+URU17 Edinson Cavani - Uruguay
+URU18 Darwin Núñez - Uruguay
+URU19 Facundo Pellistri - Uruguay
+URU20 Luis Suárez - Uruguay
+KOR1 Team Photo FOIL - South Korea
+KOR2 Team Logo - South Korea
+KOR3 Seung-gyu Kim - South Korea
+KOR4 Hyeon-woo Jo - South Korea
+KOR5 Chul Hong - South Korea
+KOR6 Tae-hwan Kim - South Korea
+KOR7 Min-jae Kim - South Korea
+KOR8 Young-gwon Kim - South Korea
+KOR9 Jin-su Kim - South Korea
+KOR10 Yong Lee - South Korea
+KOR11 In-beom Hwang - South Korea
+KOR12 Woo-young Jung - South Korea
+KOR13 Jae-sung Lee - South Korea
+KOR14 Seung-ho Paik - South Korea
+KOR15 Gue-sung Cho - South Korea
+KOR16 Hee-chan Hwang - South Korea
+KOR17 Ui-jo Hwang - South Korea
+KOR18 Chang-hoon Kwon - South Korea
+KOR19 Heung-min Son - South Korea
+KOR20 Min-kyu Song - South Korea
