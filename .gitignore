@@ -2,3 +2,4 @@
 **/imgs
 **/dist
 .env.local
+**/config
