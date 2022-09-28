@@ -5,7 +5,11 @@ import cors from "cors";
 import fs from "fs";
 import dotenv from "dotenv";
 
-import { uploadImage, processImage } from "./lib/imageProcessor";
+import {
+  uploadImage,
+  processImage,
+  getUploadedImageFromHash,
+} from "./lib/imageProcessor";
 import { buildHomePageHtml, buildResultPageHtml } from "./lib/buildHtml";
 
 dotenv.config({ path: __dirname + "/.env.local" });
@@ -40,7 +44,7 @@ app.post("/process", async (req, res, next) => {
     if (isJson) {
       res.json(result);
     } else {
-      res.send(buildResultPageHtml(result));
+      res.redirect(`/result/${image.hash}`);
     }
   } catch (e) {
     console.log(e);
@@ -50,6 +54,13 @@ app.post("/process", async (req, res, next) => {
 
 app.get("/", async (req, res, next) => {
   res.send(buildHomePageHtml());
+});
+
+app.get("/result/:hash", async (req, res, next) => {
+  const { hash } = req.params;
+  const image = getUploadedImageFromHash(hash);
+  const result = await processImage(image);
+  res.send(buildResultPageHtml(result));
 });
 
 async function run() {

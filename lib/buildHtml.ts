@@ -20,25 +20,35 @@ function uploadedImage(url: string) {
     />`;
 }
 
+function buildPolygon(vertices: any, color: string) {
+  return `<polygon points="${vertices
+    .map((v) => `${v.x},${v.y}`)
+    .join(" ")}" style="fill:transparent;stroke:${color};stroke-width:3" />`;
+}
+
 function detectionAreas(result: DetectionResult) {
   return `
   <div style="position: absolute; top: 0; left: 0" id="canvas">
       <svg height="${result.height}" width="${result.width}">
-        ${result.allPolygons.map((polygon) => {
-          return `<polygon points="${(polygon?.vertices ?? [])
-            .map((v) => `${v.x},${v.y}`)
-            .join(
-              " "
-            )}" style="fill:transparent;stroke:blue;stroke-width:3" />`;
+        ${result.playersPolygons.map((polygon) => {
+          return buildPolygon(polygon.vertices ?? [], polygon.color);
         })}
-        <polygon
-          points="${(result.points?.vertices ?? [])
-            .map((v) => `${v.x},${v.y}`)
-            .join(" ")}"
-          style="fill: none; stroke: red; stroke-width: 3"
-        />
+        ${buildPolygon(result.points?.vertices ?? [], "red")}
       </svg>
     </div>
+`;
+}
+
+function buildLegend(result: DetectionResult) {
+  return `
+  <div style="position: absolute; top: 0; left: 0; background-color: #eeeeee">
+    <ul>
+      ${result.playersPolygons.map((polygon) => {
+        return `<li style="color: ${polygon.color}">${polygon.player.name}</li>`;
+      })}
+    </ul>
+    <a href="/">Voltar</a>
+  </div>
 `;
 }
 
@@ -46,6 +56,7 @@ export function buildResultPageHtml(result: DetectionResult) {
   return html(`
 ${uploadedImage(result.url)}
 ${detectionAreas(result)}
+${buildLegend(result)}
 `);
 }
 
@@ -57,7 +68,7 @@ export function buildHomePageHtml() {
   enctype="multipart/form-data"
   action="/process"
 >
-  <input type="file" name="file" />
+  <input type="file" name="file" capture="environment" accept="image/*"/>
   <button type="submit">Upload</button>
 </form>
 `);

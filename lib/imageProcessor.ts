@@ -1,5 +1,11 @@
+import crypto from "crypto";
 import { storage, visionClient } from "./cloudClients";
-import { compareStrings, genRandomId } from "./utils";
+import {
+  compareStrings,
+  convexHull,
+  generateRandomColor,
+  genRandomId,
+} from "./utils";
 import { cards } from "../data/cards";
 
 const STORAGE_BASE_URL = "https://storage.googleapis.com";
@@ -12,23 +18,42 @@ function getBucket() {
   return storage.bucket(getBucketName());
 }
 
-export async function uploadImage(file: Express.Multer.File): Promise<{
-  file: string;
-  url: string;
-}> {
+export async function uploadImage(file: Express.Multer.File) {
   const bucket = getBucket();
-  const newFileName = `${genRandomId()}.${file.originalname.split(".").pop()}`;
+  // hash the file buffer content to get a unique id
+  const fileHash = crypto
+    .createHash("sha256")
+    .update(file.buffer)
+    .digest("hex");
+  const newFileName = `${fileHash}`;
   const destFile = bucket.file(newFileName);
-  await destFile.save(file.buffer, {
-    metadata: {
-      contentType: file.mimetype,
-    },
-  });
-  // Make file public so that it can be accessed by the frontend
-  await destFile.makePublic();
+
+  const [exists] = await destFile.exists();
+
+  if (!exists) {
+    await destFile.save(file.buffer, {
+      metadata: {
+        contentType: file.mimetype,
+      },
+    });
+    // Make file public so that it can be accessed by the frontend
+    await destFile.makePublic();
+  }
+
   return {
     file: newFileName,
     url: `${STORAGE_BASE_URL}/${getBucketName()}/${newFileName}`,
+    hash: fileHash,
+  };
+}
+
+export type UploadedImage = Awaited<ReturnType<typeof uploadImage>>;
+
+export function getUploadedImageFromHash(hash: string): UploadedImage {
+  return {
+    file: `${hash}`,
+    url: `${STORAGE_BASE_URL}/${getBucketName()}/${hash}`,
+    hash,
   };
 }
 
@@ -56,14 +81,47 @@ export const playersFromText = (text: string) => {
   return players;
 };
 
-export type UploadedImage = Awaited<ReturnType<typeof uploadImage>>;
+async function detectTextFromImage(image: UploadedImage) {
+  const bucket = getBucket();
+  const file = bucket.file(`${image.hash}.json`);
+  const [exists] = await file.exists();
+  if (exists) {
+    const content = await file.download();
+    return JSON.parse(content.toString());
+  }
+  const [result] = await visionClient.textDetection(image.url);
+  await file.save(JSON.stringify(result));
+  return result;
+}
 
 export async function processImage(image: UploadedImage) {
-  const [result] = await visionClient.textDetection(image.url);
+  const result = await detectTextFromImage(image);
   const fullText = result?.fullTextAnnotation?.text ?? "";
   const players = playersFromText(fullText);
+  const textAnnotations = result?.textAnnotations ?? [];
+  const playersPolygons = players.map((player) => {
+    const allPolygonsText = textAnnotations.filter((t) => {
+      const desc = t.description;
+      if (!desc || desc.length === 0) {
+        return false;
+      }
+      const splitName: string[] = player.name.split(/[\s-]/);
+      return splitName.some(
+        (name) => name.toLowerCase() === desc.toLowerCase()
+      );
+    });
+    const allPolygons = allPolygonsText.flatMap(
+      (t) => t.boundingPoly?.vertices ?? []
+    );
+    return {
+      vertices: convexHull(allPolygons),
+      color: generateRandomColor(),
+      player,
+    };
+  });
   return {
     url: image.url,
+    playersPolygons,
     players,
     width: result.fullTextAnnotation?.pages?.[0].width,
     height: result.fullTextAnnotation?.pages?.[0].height,
