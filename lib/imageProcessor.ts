@@ -18,7 +18,29 @@ function getBucket() {
   return storage.bucket(getBucketName());
 }
 
+export async function getBucketInfo() {
+  const bucket = getBucket();
+  const [files] = await bucket.getFiles();
+  return {
+    amount: Math.floor(files.length / 2),
+  };
+}
+
+export type BucketInfo = Awaited<ReturnType<typeof getBucketInfo>>;
+
+const BUCKET_AMOUNT_LIMIT = 1000;
+
+async function checkBucketLimit() {
+  const bucketInfo = await getBucketInfo();
+
+  if (bucketInfo.amount >= BUCKET_AMOUNT_LIMIT) {
+    throw new Error("Bucket amount limit reached");
+  }
+}
+
 export async function uploadImage(file: Express.Multer.File) {
+  await checkBucketLimit();
+
   const bucket = getBucket();
   // hash the file buffer content to get a unique id
   const fileHash = crypto
@@ -95,6 +117,7 @@ async function detectTextFromImage(image: UploadedImage) {
 }
 
 export async function processImage(image: UploadedImage) {
+  await checkBucketLimit();
   const result = await detectTextFromImage(image);
   const fullText = result?.fullTextAnnotation?.text ?? "";
   const players = playersFromText(fullText);

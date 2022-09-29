@@ -9,6 +9,7 @@ import {
   uploadImage,
   processImage,
   getUploadedImageFromHash,
+  getBucketInfo,
 } from "./lib/imageProcessor";
 import { buildHomePageHtml, buildResultPageHtml } from "./lib/buildHtml";
 
@@ -53,7 +54,8 @@ app.post("/process", async (req, res, next) => {
 });
 
 app.get("/", async (req, res, next) => {
-  res.send(buildHomePageHtml());
+  const bucketInfo = await getBucketInfo();
+  res.send(buildHomePageHtml(bucketInfo));
 });
 
 app.get("/result/:hash", async (req, res, next) => {

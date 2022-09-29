@@ -1,4 +1,4 @@
-import { DetectionResult } from "./imageProcessor";
+import { BucketInfo, DetectionResult } from "./imageProcessor";
 
 function html(body: string) {
   return `<!DOCTYPE html>
@@ -60,7 +60,7 @@ ${buildLegend(result)}
 `);
 }
 
-export function buildHomePageHtml() {
+export function buildHomePageHtml(bucketInfo: BucketInfo) {
   return html(`
 <form
   id="upload-form"
@@ -71,5 +71,8 @@ export function buildHomePageHtml() {
   <input type="file" name="file" capture="environment" accept="image/*"/>
   <button type="submit">Upload</button>
 </form>
+<div>
+  Número de imagens: ${bucketInfo.amount}
+</div>
 `);
 }
