@@ -44,6 +44,17 @@ export function convexHull(points: any[]) {
   return lower.concat(upper);
 }
 
+export function boundingBox(points: any[]) {
+  const xValues = points.map((p) => p.x);
+  const yValues = points.map((p) => p.y);
+  return {
+    x: Math.min(...xValues),
+    y: Math.min(...yValues),
+    width: Math.max(...xValues) - Math.min(...xValues),
+    height: Math.max(...yValues) - Math.min(...yValues),
+  };
+}
+
 export function generateRandomColor() {
   return (
     "#" +

@@ -3,6 +3,7 @@ import { storage, visionClient } from "./cloudClients";
 import {
   compareStrings,
   convexHull,
+  boundingBox,
   generateRandomColor,
   genRandomId,
 } from "./utils";
@@ -116,6 +117,10 @@ async function detectTextFromImage(image: UploadedImage) {
   return result;
 }
 
+function getDownscaleFactor(width: number) {
+  return width / 500;
+}
+
 export async function processImage(image: UploadedImage) {
   await checkBucketLimit();
   const result = await detectTextFromImage(image);
@@ -142,13 +147,17 @@ export async function processImage(image: UploadedImage) {
       player,
     };
   });
+  const width = result.fullTextAnnotation?.pages?.[0].width;
   return {
     url: image.url,
     playersPolygons,
     players,
-    width: result.fullTextAnnotation?.pages?.[0].width,
+    width,
     height: result.fullTextAnnotation?.pages?.[0].height,
     points: result.textAnnotations?.[0]?.boundingPoly,
+    boundingBox: boundingBox(
+      result.textAnnotations?.[0]?.boundingPoly.vertices ?? []
+    ),
     allPolygons: (result.textAnnotations ?? [])
       .filter((t) => {
         const desc = t.description;
@@ -160,6 +169,7 @@ export async function processImage(image: UploadedImage) {
         });
       })
       .map((t) => t.boundingPoly),
+    downscaleFactor: getDownscaleFactor(width),
     __cloudVisionResult: result,
   };
 }
