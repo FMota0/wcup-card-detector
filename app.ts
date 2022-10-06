@@ -12,6 +12,7 @@ import {
   getBucketInfo,
 } from "./lib/imageProcessor";
 import { buildHomePageHtml, buildResultPageHtml } from "./lib/buildHtml";
+import { downscaleAndAdjust } from "./lib/utils";
 
 dotenv.config({ path: __dirname + "/.env.local" });
 
@@ -43,7 +44,7 @@ app.post("/process", async (req, res, next) => {
     const image = await uploadImage(file);
     const result = await processImage(image);
     if (isJson) {
-      res.json(result);
+      res.json(downscaleAndAdjust(result));
     } else {
       res.redirect(`/result/${image.hash}`);
     }
@@ -61,7 +62,7 @@ app.get("/", async (req, res, next) => {
 app.get("/result/:hash", async (req, res, next) => {
   const { hash } = req.params;
   const image = getUploadedImageFromHash(hash);
-  const result = await processImage(image);
+  const result = downscaleAndAdjust(await processImage(image));
   res.send(buildResultPageHtml(result));
 });
 

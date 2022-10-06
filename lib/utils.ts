@@ -1,4 +1,5 @@
 import stringSimilarity from "string-similarity";
+import { DetectionResult } from "./imageProcessor";
 
 export const genRandomId = () => {
   return (
@@ -55,11 +56,86 @@ export function boundingBox(points: any[]) {
   };
 }
 
+export type BoundingBox = ReturnType<typeof boundingBox>;
+
+const RESULT_WIDTH = 500;
+
+function getDownscaleFactor(width: number) {
+  return RESULT_WIDTH / width;
+}
+
+export function downscaleAndAdjust(result: DetectionResult): DetectionResult {
+  const downscaleFactor = getDownscaleFactor(result.textBox.width);
+
+  const textBox = {
+    x: result.textBox.x * downscaleFactor,
+    y: result.textBox.y * downscaleFactor,
+    width: result.textBox.width * downscaleFactor,
+    height: result.textBox.height * downscaleFactor,
+  };
+
+  const imageBox = {
+    x: result.imageBox.x * downscaleFactor,
+    y: result.imageBox.y * downscaleFactor,
+    width: result.imageBox.width * downscaleFactor,
+    height: result.imageBox.height * downscaleFactor,
+  };
+
+  return {
+    ...result,
+    textBox,
+    imageBox,
+    playersPolygons: result.playersPolygons.map((p) => ({
+      ...p,
+      vertices: p.vertices.map((v) => ({
+        x: v.x * downscaleFactor,
+        y: v.y * downscaleFactor - textBox.y,
+      })),
+    })),
+    textVertices: result.textVertices.map((v) => ({
+      x: v.x * downscaleFactor,
+      y: v.y * downscaleFactor - textBox.y,
+    })),
+    allPolygons: result.allPolygons.map((p) => ({
+      ...p,
+      vertices: p.vertices.map((v) => ({
+        x: v.x * downscaleFactor,
+        y: v.y * downscaleFactor - textBox.y,
+      })),
+    })),
+  };
+}
+
+const TAILWIND_COLOR_TOKENS = [
+  "red",
+  "orange",
+  "amber",
+  "yellow",
+  "lime",
+  "green",
+  "emerald",
+  "teal",
+  "cyan",
+  "sky",
+  "blue",
+  "indigo",
+  "violet",
+  "purple",
+  "fuchsia",
+  "pink",
+  "rose",
+];
+
+const TAILWIND_COLOR_WEIGHTS = ["500", "600", "700", "800", "900"];
+
 export function generateRandomColor() {
-  return (
-    "#" +
-    Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, "0")
-  );
+  const color =
+    TAILWIND_COLOR_TOKENS[
+      Math.floor(Math.random() * TAILWIND_COLOR_TOKENS.length)
+    ];
+  const weight =
+    TAILWIND_COLOR_WEIGHTS[
+      Math.floor(Math.random() * TAILWIND_COLOR_WEIGHTS.length)
+    ];
+  return `${color}-${weight}`;
 }

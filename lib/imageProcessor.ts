@@ -1,11 +1,12 @@
 import crypto from "crypto";
+import sharp from "sharp";
 import { storage, visionClient } from "./cloudClients";
 import {
   compareStrings,
   convexHull,
-  boundingBox,
   generateRandomColor,
   genRandomId,
+  boundingBox,
 } from "./utils";
 import { cards } from "../data/cards";
 
@@ -54,7 +55,8 @@ export async function uploadImage(file: Express.Multer.File) {
   const [exists] = await destFile.exists();
 
   if (!exists) {
-    await destFile.save(file.buffer, {
+    const processedBuffer = await sharp(file.buffer).rotate().jpeg().toBuffer();
+    await destFile.save(processedBuffer, {
       metadata: {
         contentType: file.mimetype,
       },
@@ -117,10 +119,6 @@ async function detectTextFromImage(image: UploadedImage) {
   return result;
 }
 
-function getDownscaleFactor(width: number) {
-  return width / 500;
-}
-
 export async function processImage(image: UploadedImage) {
   await checkBucketLimit();
   const result = await detectTextFromImage(image);
@@ -147,31 +145,41 @@ export async function processImage(image: UploadedImage) {
       player,
     };
   });
+
+  const allPolygons = (result.textAnnotations ?? [])
+    .filter((t) => {
+      const desc = t.description;
+      if (!desc) {
+        return false;
+      }
+      return players.some((p) => {
+        return p.name.toLowerCase().includes(desc.toLowerCase());
+      });
+    })
+    .map((t) => t.boundingPoly);
   const width = result.fullTextAnnotation?.pages?.[0].width;
-  return {
+  const height = result.fullTextAnnotation?.pages?.[0].height;
+  const textVertices = (result.textAnnotations?.[0]?.boundingPoly.vertices ??
+    []) as Array<{ x: number; y: number }>;
+  const textBox = boundingBox(textVertices);
+
+  const processedResult = {
     url: image.url,
     playersPolygons,
     players,
-    width,
-    height: result.fullTextAnnotation?.pages?.[0].height,
-    points: result.textAnnotations?.[0]?.boundingPoly,
-    boundingBox: boundingBox(
-      result.textAnnotations?.[0]?.boundingPoly.vertices ?? []
-    ),
-    allPolygons: (result.textAnnotations ?? [])
-      .filter((t) => {
-        const desc = t.description;
-        if (!desc) {
-          return false;
-        }
-        return players.some((p) => {
-          return p.name.toLowerCase().includes(desc.toLowerCase());
-        });
-      })
-      .map((t) => t.boundingPoly),
-    downscaleFactor: getDownscaleFactor(width),
+    textVertices,
+    textBox,
+    imageBox: {
+      x: 0,
+      y: 0,
+      width,
+      height,
+    },
+    allPolygons,
     __cloudVisionResult: result,
   };
+
+  return processedResult;
 }
 
 export type DetectionResult = Awaited<ReturnType<typeof processImage>>;
