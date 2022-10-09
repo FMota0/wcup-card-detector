@@ -85,7 +85,7 @@ export function downscaleAndAdjust(result: DetectionResult): DetectionResult {
     ...result,
     textBox,
     imageBox,
-    playersPolygons: result.playersPolygons.map((p) => ({
+    uniqueCardsPolygons: result.uniqueCardsPolygons.map((p) => ({
       ...p,
       vertices: p.vertices.map((v) => ({
         x: v.x * downscaleFactor,
@@ -96,7 +96,7 @@ export function downscaleAndAdjust(result: DetectionResult): DetectionResult {
       x: v.x * downscaleFactor,
       y: v.y * downscaleFactor - textBox.y,
     })),
-    allPolygons: result.allPolygons.map((p) => ({
+    repeatedCardsPolygons: result.repeatedCardsPolygons.map((p) => ({
       ...p,
       vertices: p.vertices.map((v) => ({
         x: v.x * downscaleFactor,

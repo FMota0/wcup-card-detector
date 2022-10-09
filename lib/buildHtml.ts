@@ -38,11 +38,14 @@ function detectionAreas(result: DetectionResult) {
   return `
     <div class="absolute top-0 left-0" id="canvas">
       <svg height="${result.textBox.height}" width="${result.imageBox.width}">
-        ${result.playersPolygons
+        ${result.uniqueCardsPolygons
           .map((polygon) => {
             return buildPolygon(polygon.vertices ?? [], polygon.color);
           })
           .join("")}
+        ${result.repeatedCardsPolygons.map((polygon) => {
+          return buildPolygon(polygon.vertices ?? [], "gray-900");
+        }).join("")}
         ${buildPolygon(result.textVertices, "red-900")}
       </svg>
     </div>
@@ -54,9 +57,10 @@ function buildLegend(result: DetectionResult) {
   <div class="w-full p-1 bg-gray-300">
     Jogadores detectados:
     <ul class="list-disc">
-      ${result.playersPolygons
-        .map((polygon) => {
-          return `<li class="text-${polygon.color}">${polygon.player.name}</li>`;
+      ${result.players
+        .map((player) => {
+          const polygon = result.uniqueCardsPolygons.find((poly) => poly.player.id === player.id) ?? { color: "gray" };
+          return `<li class="text-${polygon.color}">${player.name} - ${player.country} - ${player.id}</li>`;
         })
         .join("")}
     </ul>
@@ -86,18 +90,27 @@ export function buildHomePageHtml(bucketInfo: BucketInfo) {
   <div
     class="flex flex-col items-center justify-center"
   >
+    <h2>Detector de cartas da copa</h2>
     <form
       id="upload-form"
       method="post"
       enctype="multipart/form-data"
       action="/process"
       class="flex flex-col items-center justify-center"
+      oninput="result.value=image.value"
     >
-      <input type="file" name="file" capture="environment" accept="image/*"/>
+      <label for="image">
+        Tire uma foto
+        <input id="image" class="hidden" type="file" name="image" capture="environment" accept="image/*" />
+      </label>
+      <output name="result"></output>
       <button type="submit">Upload</button>
     </form>
     <div>
       Número de imagens: ${bucketInfo.amount}
+    </div>
+    <div class="flex flex-col">
+      ${bucketInfo.files.map((file) => `<a href="/result/${file.hash}">${file.hash.substring(0, 6)} - ${file.detectedPlayers}</a>`).join("")}
     </div>
   <div>
 `);

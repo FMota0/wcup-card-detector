@@ -4,6 +4,7 @@ import multer from "multer";
 import cors from "cors";
 import fs from "fs";
 import dotenv from "dotenv";
+import compression from "compression";
 
 import {
   uploadImage,
@@ -29,10 +30,17 @@ const multerMid = multer({
 });
 
 app.disable("x-powered-by");
+app.use(compression());
 app.use(cors());
-app.use(multerMid.single("file"));
+app.use(multerMid.single("image"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+function addCacheHeaders(res: express.Response) {
+  if (process.env.NODE_ENV === "production") {
+    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+  }
+}
 
 app.post("/process", async (req, res, next) => {
   try {
@@ -63,6 +71,7 @@ app.get("/result/:hash", async (req, res, next) => {
   const { hash } = req.params;
   const image = getUploadedImageFromHash(hash);
   const result = downscaleAndAdjust(await processImage(image));
+  addCacheHeaders(res);
   res.send(buildResultPageHtml(result));
 });
 

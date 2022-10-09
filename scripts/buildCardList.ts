@@ -15,6 +15,7 @@ const tsCardList = `export interface Card {
 };
 
 export const cards: Card[] = [${cardDescriptions
+  .filter((line) => line.substring(3, 5) !== "1 " && line.substring(3, 5) !== "2 ")
   .map((cardDescription) => {
     // cardDescription is in the format of "id name - country", name can contain '-'
     const sections = cardDescription.split("-");

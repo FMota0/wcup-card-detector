@@ -8,8 +8,11 @@ import {
   genRandomId,
   boundingBox,
 } from "./utils";
-import { cards } from "../data/cards";
+import { Card, cards } from "../data/cards";
 
+const IMAGE_PREFIX = "img_";
+const TEXT_PREFIX = "txt_";
+const META_PREFIX = "meta_";
 const STORAGE_BASE_URL = "https://storage.googleapis.com";
 
 function getBucketName() {
@@ -24,7 +27,14 @@ export async function getBucketInfo() {
   const bucket = getBucket();
   const [files] = await bucket.getFiles();
   return {
-    amount: Math.floor(files.length / 2),
+    amount: files.filter((file) => file.name.startsWith(IMAGE_PREFIX)).length,
+    files: files.filter((file) => file.name.startsWith(META_PREFIX)).map((file) => {
+      const [_, detectedPlayers, hash] = file.name.split("_");
+      return {
+        detectedPlayers: parseInt(detectedPlayers),
+        ...getUploadedImageFromHash(hash),
+      };
+    })
   };
 }
 
@@ -49,13 +59,13 @@ export async function uploadImage(file: Express.Multer.File) {
     .createHash("sha256")
     .update(file.buffer)
     .digest("hex");
-  const newFileName = `${fileHash}`;
+  const newFileName = `${IMAGE_PREFIX}${fileHash}`;
   const destFile = bucket.file(newFileName);
 
   const [exists] = await destFile.exists();
 
   if (!exists) {
-    const processedBuffer = await sharp(file.buffer).rotate().jpeg().toBuffer();
+    const processedBuffer = await sharp(file.buffer).rotate().jpeg({ quality: 70 }).toBuffer();
     await destFile.save(processedBuffer, {
       metadata: {
         contentType: file.mimetype,
@@ -76,39 +86,80 @@ export type UploadedImage = Awaited<ReturnType<typeof uploadImage>>;
 
 export function getUploadedImageFromHash(hash: string): UploadedImage {
   return {
-    file: `${hash}`,
-    url: `${STORAGE_BASE_URL}/${getBucketName()}/${hash}`,
+    file: `${IMAGE_PREFIX}${hash}`,
+    url: `${STORAGE_BASE_URL}/${getBucketName()}/${IMAGE_PREFIX}${hash}`,
     hash,
   };
 }
 
-const DETECTION_THRESHOLD = 0.9;
+const DETECTION_THRESHOLD_FRONT = 0.78;
+const DETECTION_THRESHOLD_BACK = 0.92;
+interface DetectedCard extends Card {
+  face: "front" | "back";
+}
 export const playersFromText = (text: string) => {
   const words = text.split("\n");
-  const players = [];
+  const detectedCards: DetectedCard[] = [];
   for (const word of words) {
     let biggest = 0,
-      biggestCard = null;
+      biggestCard: Card | null = null, face: "front" | "back" | null = null;
     for (const card of cards) {
-      const bestSimilarity = Math.max(
-        compareStrings(word, card.name),
-        compareStrings(word, card.id)
-      );
-      if (bestSimilarity > biggest) {
-        biggest = bestSimilarity;
+      const similarityFront = compareStrings(word, card.name);
+      const similarityBack = compareStrings(word, card.id);
+      const similarity = Math.max(similarityFront, similarityBack);
+      if (similarity > biggest && (similarityFront > DETECTION_THRESHOLD_FRONT || similarityBack > DETECTION_THRESHOLD_BACK)) {
+        biggest = similarity;
         biggestCard = card;
+        face = similarityFront > DETECTION_THRESHOLD_FRONT ? "front" : "back";
       }
-    }
-    if (biggest > DETECTION_THRESHOLD && biggestCard) {
-      players.push(biggestCard);
+    }      
+    if (biggestCard && face) {
+      detectedCards.push({
+        ...biggestCard,
+        face,
+      });
     }
   }
-  return players;
+  const uniqueCards: DetectedCard[] = [];
+  const repeatedCards: DetectedCard[] = [];
+  const counter = {};
+  for (const card of detectedCards) {
+    counter[card.id] = (counter[card.id] ?? 0) + 1;
+  }
+  for (const [key, value] of Object.entries(counter)) {
+    const card = detectedCards.find((card) => card.id === key);
+    if (card) {
+      if (value === 1) {
+        uniqueCards.push(card);
+      } else {
+        repeatedCards.push(card);
+      }
+    }
+  }
+  return {
+    uniqueCards,
+    repeatedCards,
+  };
 };
+
+export async function uploadMetadata(
+  hash: string,
+  metadata: { detectedPlayers: number; }
+) {
+  const bucket = getBucket();
+  const newFileName = `${META_PREFIX}${metadata.detectedPlayers}_${hash}`;
+  const destFile = bucket.file(newFileName);
+
+  await destFile.save(JSON.stringify(metadata), {
+    metadata: {
+      contentType: "application/json",
+    },
+  });
+}
 
 async function detectTextFromImage(image: UploadedImage) {
   const bucket = getBucket();
-  const file = bucket.file(`${image.hash}.json`);
+  const file = bucket.file(`${TEXT_PREFIX}${image.hash}.json`);
   const [exists] = await file.exists();
   if (exists) {
     const content = await file.download();
@@ -123,9 +174,10 @@ export async function processImage(image: UploadedImage) {
   await checkBucketLimit();
   const result = await detectTextFromImage(image);
   const fullText = result?.fullTextAnnotation?.text ?? "";
-  const players = playersFromText(fullText);
+  const { uniqueCards, repeatedCards } = playersFromText(fullText);
+  const players = [...uniqueCards, ...repeatedCards];
   const textAnnotations = result?.textAnnotations ?? [];
-  const playersPolygons = players.map((player) => {
+  const uniqueCardsPolygons = uniqueCards.map((player) => {
     const allPolygonsText = textAnnotations.filter((t) => {
       const desc = t.description;
       if (!desc || desc.length === 0) {
@@ -146,13 +198,13 @@ export async function processImage(image: UploadedImage) {
     };
   });
 
-  const allPolygons = (result.textAnnotations ?? [])
+  const repeatedCardsPolygons = (result.textAnnotations ?? [])
     .filter((t) => {
       const desc = t.description;
       if (!desc) {
         return false;
       }
-      return players.some((p) => {
+      return repeatedCards.some((p) => {
         return p.name.toLowerCase().includes(desc.toLowerCase());
       });
     })
@@ -165,7 +217,7 @@ export async function processImage(image: UploadedImage) {
 
   const processedResult = {
     url: image.url,
-    playersPolygons,
+    uniqueCardsPolygons,
     players,
     textVertices,
     textBox,
@@ -175,9 +227,13 @@ export async function processImage(image: UploadedImage) {
       width,
       height,
     },
-    allPolygons,
-    __cloudVisionResult: result,
+    repeatedCardsPolygons,
+    __vision: result,
   };
+
+  await uploadMetadata(image.hash, {
+    detectedPlayers: players.length,
+  });
 
   return processedResult;
 }

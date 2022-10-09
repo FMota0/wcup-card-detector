@@ -6,16 +6,6 @@ export interface Card {
 
 export const cards: Card[] = [
 {
-   id: 'QAT1',
-   name: 'Team Photo FOIL',
-   country: 'Qatar',
-},
-{
-   id: 'QAT2',
-   name: 'Team Logo',
-   country: 'Qatar',
-},
-{
    id: 'QAT3',
    name: 'Saad Al Sheeb',
    country: 'Qatar',
@@ -104,16 +94,6 @@ export const cards: Card[] = [
    id: 'QAT20',
    name: 'Mohammed Muntari',
    country: 'Qatar',
-},
-{
-   id: 'ECU1',
-   name: 'Team Photo FOIL',
-   country: 'Ecuador',
-},
-{
-   id: 'ECU2',
-   name: 'Team Logo',
-   country: 'Ecuador',
 },
 {
    id: 'ECU3',
@@ -206,16 +186,6 @@ export const cards: Card[] = [
    country: 'Ecuador',
 },
 {
-   id: 'SEN1',
-   name: 'Team Photo FOIL',
-   country: 'Senegal',
-},
-{
-   id: 'SEN2',
-   name: 'Team Logo',
-   country: 'Senegal',
-},
-{
    id: 'SEN3',
    name: 'Édouard Mendy',
    country: 'Senegal',
@@ -304,16 +274,6 @@ export const cards: Card[] = [
    id: 'SEN20',
    name: 'Ismaïla Sarr',
    country: 'Senegal',
-},
-{
-   id: 'NED1',
-   name: 'Team Photo FOIL',
-   country: 'Netherlands',
-},
-{
-   id: 'NED2',
-   name: 'Team Logo',
-   country: 'Netherlands',
 },
 {
    id: 'NED3',
@@ -406,16 +366,6 @@ export const cards: Card[] = [
    country: 'Netherlands',
 },
 {
-   id: 'ENG1',
-   name: 'Team Photo FOIL',
-   country: 'England',
-},
-{
-   id: 'ENG2',
-   name: 'Team Logo',
-   country: 'England',
-},
-{
    id: 'ENG3',
    name: 'Jordan Pickford',
    country: 'England',
@@ -504,16 +454,6 @@ export const cards: Card[] = [
    id: 'ENG20',
    name: 'Raheem Sterling',
    country: 'England',
-},
-{
-   id: 'IRN1',
-   name: 'Team Photo FOIL',
-   country: 'Iran',
-},
-{
-   id: 'IRN2',
-   name: 'Team Logo',
-   country: 'Iran',
 },
 {
    id: 'IRN3',
@@ -606,16 +546,6 @@ export const cards: Card[] = [
    country: 'Iran',
 },
 {
-   id: 'USA1',
-   name: 'Team Photo FOIL',
-   country: 'USA',
-},
-{
-   id: 'USA2',
-   name: 'Team Logo',
-   country: 'USA',
-},
-{
    id: 'USA3',
    name: 'Matt Turner',
    country: 'USA',
@@ -704,16 +634,6 @@ export const cards: Card[] = [
    id: 'USA20',
    name: 'Timothy Weah',
    country: 'USA',
-},
-{
-   id: 'WAL1',
-   name: 'Team Photo FOIL',
-   country: 'Wales',
-},
-{
-   id: 'WAL2',
-   name: 'Team Logo',
-   country: 'Wales',
 },
 {
    id: 'WAL3',
@@ -806,16 +726,6 @@ export const cards: Card[] = [
    country: 'Wales',
 },
 {
-   id: 'ARG1',
-   name: 'Team Photo FOIL',
-   country: 'Argentina',
-},
-{
-   id: 'ARG2',
-   name: 'Team Logo',
-   country: 'Argentina',
-},
-{
    id: 'ARG3',
    name: 'Emiliano Martínez',
    country: 'Argentina',
@@ -904,16 +814,6 @@ export const cards: Card[] = [
    id: 'ARG20',
    name: 'Lionel Messi',
    country: 'Argentina',
-},
-{
-   id: 'KSA1',
-   name: 'Team Photo FOIL',
-   country: 'Saudi Arabia',
-},
-{
-   id: 'KSA2',
-   name: 'Team Logo',
-   country: 'Saudi Arabia',
 },
 {
    id: 'KSA3',
@@ -1006,16 +906,6 @@ export const cards: Card[] = [
    country: 'Saudi Arabia',
 },
 {
-   id: 'MEX1',
-   name: 'Team Photo FOIL',
-   country: 'Mexico',
-},
-{
-   id: 'MEX2',
-   name: 'Team Logo',
-   country: 'Mexico',
-},
-{
    id: 'MEX3',
    name: 'Guillermo Ochoa',
    country: 'Mexico',
@@ -1104,16 +994,6 @@ export const cards: Card[] = [
    id: 'MEX20',
    name: 'Hirving Lozano',
    country: 'Mexico',
-},
-{
-   id: 'POL1',
-   name: 'Team Photo FOIL',
-   country: 'Poland',
-},
-{
-   id: 'POL2',
-   name: 'Team Logo',
-   country: 'Poland',
 },
 {
    id: 'POL3',
@@ -1206,16 +1086,6 @@ export const cards: Card[] = [
    country: 'Poland',
 },
 {
-   id: 'FRA1',
-   name: 'Team Photo FOIL',
-   country: 'France',
-},
-{
-   id: 'FRA2',
-   name: 'Team Logo',
-   country: 'France',
-},
-{
    id: 'FRA3',
    name: 'Hugo Lloris',
    country: 'France',
@@ -1304,16 +1174,6 @@ export const cards: Card[] = [
    id: 'FRA20',
    name: 'Christopher Nkunku',
    country: 'France',
-},
-{
-   id: 'AUS1',
-   name: 'Team Photo FOIL',
-   country: 'Australia',
-},
-{
-   id: 'AUS2',
-   name: 'Team Logo',
-   country: 'Australia',
 },
 {
    id: 'AUS3',
@@ -1406,16 +1266,6 @@ export const cards: Card[] = [
    country: 'Australia',
 },
 {
-   id: 'DEN1',
-   name: 'Team Photo FOIL',
-   country: 'Denmark',
-},
-{
-   id: 'DEN2',
-   name: 'Team Logo',
-   country: 'Denmark',
-},
-{
    id: 'DEN3',
    name: 'Kasper Schmeichel',
    country: 'Denmark',
@@ -1504,16 +1354,6 @@ export const cards: Card[] = [
    id: 'DEN20',
    name: 'Jonas Wind',
    country: 'Denmark',
-},
-{
-   id: 'TUN1',
-   name: 'Team Photo FOIL',
-   country: 'Tunisia',
-},
-{
-   id: 'TUN2',
-   name: 'Team Logo',
-   country: 'Tunisia',
 },
 {
    id: 'TUN3',
@@ -1606,16 +1446,6 @@ export const cards: Card[] = [
    country: 'Tunisia',
 },
 {
-   id: 'ESP1',
-   name: 'Team Photo FOIL',
-   country: 'Spain',
-},
-{
-   id: 'ESP2',
-   name: 'Team Logo',
-   country: 'Spain',
-},
-{
    id: 'ESP3',
    name: 'Unai Simón',
    country: 'Spain',
@@ -1704,16 +1534,6 @@ export const cards: Card[] = [
    id: 'ESP20',
    name: 'Pablo Sarabia',
    country: 'Spain',
-},
-{
-   id: 'CRC1',
-   name: 'Team Photo FOIL',
-   country: 'Costa Rica',
-},
-{
-   id: 'CRC2',
-   name: 'Team Logo',
-   country: 'Costa Rica',
 },
 {
    id: 'CRC3',
@@ -1806,16 +1626,6 @@ export const cards: Card[] = [
    country: 'Costa Rica',
 },
 {
-   id: 'GER1',
-   name: 'Team Photo FOIL',
-   country: 'Germany',
-},
-{
-   id: 'GER2',
-   name: 'Team Logo',
-   country: 'Germany',
-},
-{
    id: 'GER3',
    name: 'Manuel Neuer',
    country: 'Germany',
@@ -1904,16 +1714,6 @@ export const cards: Card[] = [
    id: 'GER20',
    name: 'Timo Werner',
    country: 'Germany',
-},
-{
-   id: 'JPN1',
-   name: 'Team Photo FOIL',
-   country: 'Japan',
-},
-{
-   id: 'JPN2',
-   name: 'Team Logo',
-   country: 'Japan',
 },
 {
    id: 'JPN3',
@@ -2006,16 +1806,6 @@ export const cards: Card[] = [
    country: 'Japan',
 },
 {
-   id: 'BEL1',
-   name: 'Team Photo FOIL',
-   country: 'Belgium',
-},
-{
-   id: 'BEL2',
-   name: 'Team Logo',
-   country: 'Belgium',
-},
-{
    id: 'BEL3',
    name: 'Thibaut Courtois',
    country: 'Belgium',
@@ -2104,16 +1894,6 @@ export const cards: Card[] = [
    id: 'BEL20',
    name: 'Dries Mertens',
    country: 'Belgium',
-},
-{
-   id: 'CAN1',
-   name: 'Team Photo FOIL',
-   country: 'Canada',
-},
-{
-   id: 'CAN2',
-   name: 'Team Logo',
-   country: 'Canada',
 },
 {
    id: 'CAN3',
@@ -2206,16 +1986,6 @@ export const cards: Card[] = [
    country: 'Canada',
 },
 {
-   id: 'MAR1',
-   name: 'Team Photo FOIL',
-   country: 'Morocco',
-},
-{
-   id: 'MAR2',
-   name: 'Team Logo',
-   country: 'Morocco',
-},
-{
    id: 'MAR3',
    name: 'Yassine Bounou',
    country: 'Morocco',
@@ -2304,16 +2074,6 @@ export const cards: Card[] = [
    id: 'MAR20',
    name: 'Tarik Tissoudali',
    country: 'Morocco',
-},
-{
-   id: 'CRO1',
-   name: 'Team Photo FOIL',
-   country: 'Croatia',
-},
-{
-   id: 'CRO2',
-   name: 'Team Logo',
-   country: 'Croatia',
 },
 {
    id: 'CRO3',
@@ -2406,16 +2166,6 @@ export const cards: Card[] = [
    country: 'Croatia',
 },
 {
-   id: 'BRA1',
-   name: 'Team Photo FOIL',
-   country: 'Brazil',
-},
-{
-   id: 'BRA2',
-   name: 'Team Logo',
-   country: 'Brazil',
-},
-{
    id: 'BRA3',
    name: 'Alisson',
    country: 'Brazil',
@@ -2504,16 +2254,6 @@ export const cards: Card[] = [
    id: 'BRA20',
    name: 'Vinícius Jr',
    country: 'Brazil',
-},
-{
-   id: 'SRB1',
-   name: 'Team Photo FOIL',
-   country: 'Serbia',
-},
-{
-   id: 'SRB2',
-   name: 'Team Logo',
-   country: 'Serbia',
 },
 {
    id: 'SRB3',
@@ -2606,16 +2346,6 @@ export const cards: Card[] = [
    country: 'Serbia',
 },
 {
-   id: 'SUI1',
-   name: 'Team Photo FOIL',
-   country: 'Switzerland',
-},
-{
-   id: 'SUI2',
-   name: 'Team Logo',
-   country: 'Switzerland',
-},
-{
    id: 'SUI3',
    name: 'Yann Sommer',
    country: 'Switzerland',
@@ -2704,16 +2434,6 @@ export const cards: Card[] = [
    id: 'SUI20',
    name: 'Ruben Vargas',
    country: 'Switzerland',
-},
-{
-   id: 'CMR1',
-   name: 'Team Photo FOIL',
-   country: 'Cameroon',
-},
-{
-   id: 'CMR2',
-   name: 'Team Logo',
-   country: 'Cameroon',
 },
 {
    id: 'CMR3',
@@ -2806,16 +2526,6 @@ export const cards: Card[] = [
    country: 'Cameroon',
 },
 {
-   id: 'POR1',
-   name: 'Team Photo FOIL',
-   country: 'Portugal',
-},
-{
-   id: 'POR2',
-   name: 'Team Logo',
-   country: 'Portugal',
-},
-{
    id: 'POR3',
    name: 'Diogo Costa',
    country: 'Portugal',
@@ -2904,16 +2614,6 @@ export const cards: Card[] = [
    id: 'POR20',
    name: 'Gonçalo Guedes',
    country: 'Portugal',
-},
-{
-   id: 'GHA1',
-   name: 'Team Photo FOIL',
-   country: 'Ghana',
-},
-{
-   id: 'GHA2',
-   name: 'Team Logo',
-   country: 'Ghana',
 },
 {
    id: 'GHA3',
@@ -3006,16 +2706,6 @@ export const cards: Card[] = [
    country: 'Ghana',
 },
 {
-   id: 'URU1',
-   name: 'Team Photo FOIL',
-   country: 'Uruguay',
-},
-{
-   id: 'URU2',
-   name: 'Team Logo',
-   country: 'Uruguay',
-},
-{
    id: 'URU3',
    name: 'Fernando Muslera',
    country: 'Uruguay',
@@ -3106,16 +2796,6 @@ export const cards: Card[] = [
    country: 'Uruguay',
 },
 {
-   id: 'KOR1',
-   name: 'Team Photo FOIL',
-   country: 'South Korea',
-},
-{
-   id: 'KOR2',
-   name: 'Team Logo',
-   country: 'South Korea',
-},
-{
    id: 'KOR3',
    name: 'Seung-gyu Kim',
    country: 'South Korea',
@@ -3204,4 +2884,5 @@ export const cards: Card[] = [
    id: 'KOR20',
    name: 'Min-kyu Song',
    country: 'South Korea',
-}];
+}
+];
