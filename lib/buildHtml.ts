@@ -1,5 +1,6 @@
 import { BucketInfo, DetectionResult } from "./imageProcessor";
 import { BoundingBox } from "./utils";
+import { countries } from "../data/countries";
 
 function html(body: string) {
   return `<!DOCTYPE html>
@@ -11,7 +12,7 @@ function html(body: string) {
   </head>
   <body>
     <div class="flex flex-col items-center justify-center">
-      <div class="max-w-5xl">
+      <div>
         ${body}
       </div>
     </div>
@@ -52,6 +53,13 @@ function detectionAreas(result: DetectionResult) {
 `;
 }
 
+function buildCountryFlag(country: string) {
+  const countryMeta = countries.find((c) => c.name.toLowerCase() === country.toLowerCase());
+  const countryCode = countryMeta.code.toLowerCase();
+  const countryFlag = `https://www.flagcdn.com/w320/${countryCode}.png`;
+  return `<img src="${countryFlag}" width="20px" height="14px" />`;
+}
+
 function buildLegend(result: DetectionResult) {
   return `
   <div class="w-full p-1 bg-gray-300">
@@ -60,7 +68,7 @@ function buildLegend(result: DetectionResult) {
       ${result.players
         .map((player) => {
           const polygon = result.uniqueCardsPolygons.find((poly) => poly.player.id === player.id) ?? { color: "gray" };
-          return `<li class="text-${polygon.color}">${player.name} - ${player.country} - ${player.id}</li>`;
+          return `<li class="text-${polygon.color} flex">${player.name} - ${buildCountryFlag(player.country)} - ${player.id}</li>`;
         })
         .join("")}
     </ul>
