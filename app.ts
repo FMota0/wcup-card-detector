@@ -50,7 +50,7 @@ function addCacheHeaders(res: express.Response) {
 
 app.post("/process", async (req, res, next) => {
   try {
-    const { isJson } = req.query;
+    const { isJson, w } = req.query;
     const file = req.file;
     if (!file) {
       return res.status(400).send("No file uploaded.");
@@ -60,7 +60,7 @@ app.post("/process", async (req, res, next) => {
     if (isJson) {
       res.json(downscaleAndAdjust(result));
     } else {
-      res.redirect(`/result/${image.hash}`);
+      res.redirect(`/result/${image.hash}?w=${w}`);
     }
   } catch (e) {
     console.log(e);
@@ -91,8 +91,9 @@ app.get("/result/:hash", async (req, res, next) => {
     return;
   }
   const { hash } = req.params;
+  const { w } = req.query;
   const image = getUploadedImageFromHash(hash);
-  const result = downscaleAndAdjust(await processImage(image));
+  const result = downscaleAndAdjust(await processImage(image), parseInt((w as string) ?? "400"));
   addCacheHeaders(res);
   const html = buildResultPageHtml(result);
   inMemoryCache[req.path] = {

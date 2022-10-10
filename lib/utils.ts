@@ -56,14 +56,15 @@ export function boundingBox(points: any[]) {
 
 export type BoundingBox = ReturnType<typeof boundingBox>;
 
-const RESULT_WIDTH = 500;
 
-function getDownscaleFactor(width: number) {
-  return RESULT_WIDTH / width;
+function getDownscaleFactor(width: number, resultWidth: number) {
+  return resultWidth / width;
 }
 
-export function downscaleAndAdjust(result: DetectionResult): DetectionResult {
-  const downscaleFactor = getDownscaleFactor(result.textBox.width);
+const RESULT_WIDTH = 400;
+
+export function downscaleAndAdjust(result: DetectionResult, resultWidth: number = RESULT_WIDTH): DetectionResult {
+  const downscaleFactor = getDownscaleFactor(result.textBox.width, resultWidth - 20);
 
   const textBox = {
     x: result.textBox.x * downscaleFactor,

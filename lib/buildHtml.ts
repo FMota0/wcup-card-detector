@@ -22,15 +22,22 @@ function html(body: string, script: string = "") {
     <script type="text/javascript">
       ${script}
     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     ${fontImport()}
     <style type="text/css">
       * {
         font-family: 'Inter', sans-serif;
       }
+      #root {
+        min-height: 100vh;
+        min-height: -moz-available;
+        min-height: -webkit-fill-available;
+        min-height: fill-available;
+      }
     </style>
   </head>
   <body>
-    <div id="root" class="v-screen h-screen bg-neutral-900 text-white overflow-hidden">
+    <div id="root" class="h-screen bg-neutral-900 text-white overflow-x-hidden overflow-y-scroll text-base">
       ${body}
     </div>
   </body>
@@ -94,7 +101,7 @@ function buildLegend(result: DetectionResult) {
       ${result.players
         .map((player) => {
           const polygon = result.uniqueCardsPolygons.find((poly) => poly.player.id === player.id) ?? { color: "gray" };
-          return `<div class="w-1/3 text-${polygon.color} flex items-center ${buildCardClass(player)}" style="border: 2px solid transparent">${buildCountryFlag(player.country)}${player.country}: ${player.name} - ${player.id}</div>`;
+          return `<div class="lg:w-1/3 w-1/2 text-${polygon.color} flex items-center ${buildCardClass(player)}" style="border: 2px solid transparent">${buildCountryFlag(player.country)}${player.country}: ${player.name} - ${player.id}</div>`;
         })
         .join("")}
     </div>
@@ -208,6 +215,20 @@ function buildHomePageFooter(bucketInfo: BucketInfo) {
 `
 }
 
+function buildLinkEnhancerScript() {
+  return `
+function enhanceLinks() {
+  const links = document.getElementsByTagName("a");
+  for (let i = 0; i < links.length; i++) {
+    links[i].href += \`?w=$\{window.innerWidth\}\`;
+  }
+  const form = document.getElementsByTagName("form")[0];
+  form.action += \`?w=$\{window.innerWidth\}\`;
+}
+window.onload = enhanceLinks;
+`
+}
+
 export function buildHomePageHtml(bucketInfo: BucketInfo) {
   return html(`
   <div
@@ -226,9 +247,9 @@ export function buildHomePageHtml(bucketInfo: BucketInfo) {
       oninput="picked.value=image.value.split('\\\\').pop().length ? image.value.split('\\\\').pop() : 'Escolha uma foto'"
     >
       ${filePicker()}
-      <button class="w-full font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-700" type="submit">Upload</button>
+      <button class="w-full font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-700" type="submit">Detectar</button>
     </form>
     ${buildHomePageFooter(bucketInfo)}
   <div>
-`);
+`, buildLinkEnhancerScript());
 }
