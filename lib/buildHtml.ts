@@ -29,15 +29,16 @@ function html(body: string, script: string = "") {
         font-family: 'Inter', sans-serif;
       }
       #root {
-        min-height: 100vh;
-        min-height: -moz-available;
-        min-height: -webkit-fill-available;
-        min-height: fill-available;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
       }
     </style>
   </head>
   <body>
-    <div id="root" class="h-screen bg-neutral-900 text-white overflow-x-hidden overflow-y-scroll text-base">
+    <div id="root" class="flex flex-col bg-neutral-900 text-white overflow-x-hidden overflow-y-scroll text-base">
       ${body}
     </div>
   </body>
@@ -96,7 +97,7 @@ function buildCountryFlag(country: string, factor: number = 1) {
 function buildLegend(result: DetectionResult) {
   return `
   <div class="w-full p-4 bg-zinc-800 flex flex-col align-center gap-y-2">
-    <strong><p>Jogadores detectados:</p></strong>
+    <p class="font-bold">${result.players.length} cartas diferents detectadas:</p>
     <div class="flex flex-wrap gap-y-1">
       ${result.players
         .map((player) => {
@@ -105,11 +106,6 @@ function buildLegend(result: DetectionResult) {
         })
         .join("")}
     </div>
-    <a href="/">
-      <div class="font-bold py-2 px-4 rounded bg-blue-500 text-center hover:bg-blue-700">
-        Voltar
-      </div>
-    </a>
   </div>
 `;
 }
@@ -172,6 +168,27 @@ export function buildResultPageHtml(result: DetectionResult) {
   `, buildResultPageHoverScript(result));
 }
 
+export function buildFakeResultPageHtml(hash: string) {
+  return html(`
+<div>
+  <iframe class="w-full h-full" id="image-result"></iframe>
+  <div class="w-full p-4 bg-zinc-800">
+    <a href="/">
+      <div class="font-bold py-2 px-4 rounded bg-blue-500 text-center hover:bg-blue-700">
+        Voltar
+      </div>
+    </a>
+  </div>
+<div />
+`, `
+window.onload = function() {
+  const iframe = document.getElementById("image-result");
+  iframe.src = \`/result/${hash}/\${window.innerWidth}/\${window.innerHeight}\`;
+  root.prepend(iframe);
+}
+`);
+}
+
 function filePicker() {
   return `
 <label for="image">
@@ -209,30 +226,16 @@ function buildHomePageFooter(bucketInfo: BucketInfo) {
   <div>
     <p>Esta ferramenta foi desenvolvida para ajudar a detectar os jogadores de um jogo de cartas. Para isso, basta tirar uma foto do jogo e carregar aqui.</p>
     <p>Para obter melhores resultados, é importante que a foto esteja o mais próxima possível da mesa, com boa iluminação e que o jogo esteja bem visível.</p>
-    <p>Esta ferramenta é open source e pode ser encontrada em <a class="${LINK_STYLE}" href="https://github.com/FMota0/wcup-card-detector">Github</a>.</p>
+    <p>Esta ferramenta é open source e pode ser encontrada em <a class="${LINK_STYLE}" href="https://github.com/FMota0/wcup-card-detector" target="_blank">Github</a>.</p>
   </div>
 </div>
-`
-}
-
-function buildLinkEnhancerScript() {
-  return `
-function enhanceLinks() {
-  const links = document.getElementsByTagName("a");
-  for (let i = 0; i < links.length; i++) {
-    links[i].href += \`?w=$\{window.innerWidth\}\`;
-  }
-  const form = document.getElementsByTagName("form")[0];
-  form.action += \`?w=$\{window.innerWidth\}\`;
-}
-window.onload = enhanceLinks;
 `
 }
 
 export function buildHomePageHtml(bucketInfo: BucketInfo) {
   return html(`
   <div
-    class="h-full flex flex-col items-center gap-y-2"
+    class="h-full flex flex-col items-center gap-y-4"
   >
     <div class="h-64 flex items-center gap-x-2">
       <div class="text-4xl">Detector de cartas da copa</div>
@@ -251,5 +254,5 @@ export function buildHomePageHtml(bucketInfo: BucketInfo) {
     </form>
     ${buildHomePageFooter(bucketInfo)}
   <div>
-`, buildLinkEnhancerScript());
+`);
 }

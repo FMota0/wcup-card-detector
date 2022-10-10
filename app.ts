@@ -11,9 +11,11 @@ import {
   processImage,
   getUploadedImageFromHash,
   getBucketInfo,
+  DetectionResult,
 } from "./lib/imageProcessor";
-import { buildHomePageHtml, buildResultPageHtml } from "./lib/buildHtml";
+import { buildFakeResultPageHtml, buildHomePageHtml, buildResultPageHtml } from "./lib/buildHtml";
 import { downscaleAndAdjust } from "./lib/utils";
+import * as cache from "./lib/cache";
 
 dotenv.config({ path: __dirname + "/.env.local" });
 
@@ -29,11 +31,6 @@ const multerMid = multer({
   },
 });
 
-const inMemoryCache: { [key: string]: {
-  html: string,
-  ttl: number,
-} } = {};
-
 app.disable("x-powered-by");
 app.use(compression());
 app.use(cors());
@@ -42,10 +39,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
-function addCacheHeaders(res: express.Response) {
-  if (process.env.NODE_ENV === "production") {
-    res.setHeader("Cache-Control", "public, max-age=3600");
-  }
+const CACHE_DURATION = 60 * 60;
+function withCacheHeaders(duration: number) {
+  return (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    if (req.method === "GET" && process.env.NODE_ENV === "production") {
+      res.set("Cache-Control", `public, max-age=${duration}`);
+    }
+    next();
+  };
 }
 
 app.post("/process", async (req, res, next) => {
@@ -58,9 +59,9 @@ app.post("/process", async (req, res, next) => {
     const image = await uploadImage(file);
     const result = await processImage(image);
     if (isJson) {
-      res.json(downscaleAndAdjust(result));
+      res.json(downscaleAndAdjust(result, 400, 400));
     } else {
-      res.redirect(`/result/${image.hash}?w=${w}`);
+      res.redirect(`/result/${image.hash}`);
     }
   } catch (e) {
     console.log(e);
@@ -68,38 +69,47 @@ app.post("/process", async (req, res, next) => {
   }
 });
 
-const CACHE_TTL = 1000 * 60 * 60; // 1 hour
-
-app.get("/", async (req, res, next) => {
-  if (req.path in inMemoryCache && inMemoryCache[req.path].ttl > Date.now()) {
-    addCacheHeaders(res);
-    return res.send(inMemoryCache[req.path].html);
+app.get("/", withCacheHeaders(CACHE_DURATION), async (req, res, next) => {
+  const inCacheHtml = cache.get(req.path);
+  if (inCacheHtml) {
+    return res.send(inCacheHtml);
   }
   const bucketInfo = await getBucketInfo();
   const html = buildHomePageHtml(bucketInfo);
-  inMemoryCache[req.path] = {
-    html,
-    ttl: Date.now() + CACHE_TTL,
-  };
+  cache.set(req.path, html);
   res.send(html);
 });
 
-app.get("/result/:hash", async (req, res, next) => {
-  if (req.path in inMemoryCache && inMemoryCache[req.path].ttl > Date.now()) {
-    addCacheHeaders(res);
-    res.send(inMemoryCache[req.path].html);
-    return;
+async function cachedProcessImage(hash: string) {
+  const inCache = cache.get<DetectionResult>(hash);
+  if (inCache) {
+    return inCache;
+  }
+  const result = await processImage(getUploadedImageFromHash(hash));
+  cache.set(hash, result);
+  return result;
+}
+
+app.get("/result/:hash/:w/:h", withCacheHeaders(CACHE_DURATION), async (req, res, next) => {
+  const inCacheHtml = cache.get(req.path);
+  if (inCacheHtml) {
+    return res.send(inCacheHtml);
+  }
+  const { hash, w, h } = req.params;
+  const processed = await cachedProcessImage(hash);
+  const result = downscaleAndAdjust(processed, parseInt(w), parseInt(h));
+  const html = buildResultPageHtml(result);
+  res.send(html);
+});
+
+app.get("/result/:hash", withCacheHeaders(CACHE_DURATION), async (req, res, next) => {
+  const inCacheHtml = cache.get(req.path);
+  if (inCacheHtml) {
+    return res.send(inCacheHtml);
   }
   const { hash } = req.params;
-  const { w } = req.query;
-  const image = getUploadedImageFromHash(hash);
-  const result = downscaleAndAdjust(await processImage(image), parseInt((w as string) ?? "400"));
-  addCacheHeaders(res);
-  const html = buildResultPageHtml(result);
-  inMemoryCache[req.path] = {
-    html,
-    ttl: Date.now() + CACHE_TTL,
-  };
+  const html = buildFakeResultPageHtml(hash);
+  cache.set(req.path, html);
   res.send(html);
 });
 
