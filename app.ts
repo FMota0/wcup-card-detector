@@ -29,6 +29,11 @@ const multerMid = multer({
   },
 });
 
+const inMemoryCache: { [key: string]: {
+  html: string,
+  ttl: number,
+} } = {};
+
 app.disable("x-powered-by");
 app.use(compression());
 app.use(cors());
@@ -63,17 +68,38 @@ app.post("/process", async (req, res, next) => {
   }
 });
 
+const CACHE_TTL = 1000 * 60 * 60; // 1 hour
+
 app.get("/", async (req, res, next) => {
+  if (req.path in inMemoryCache && inMemoryCache[req.path].ttl > Date.now()) {
+    addCacheHeaders(res);
+    return res.send(inMemoryCache[req.path].html);
+  }
   const bucketInfo = await getBucketInfo();
-  res.send(buildHomePageHtml(bucketInfo));
+  const html = buildHomePageHtml(bucketInfo);
+  inMemoryCache[req.path] = {
+    html,
+    ttl: Date.now() + CACHE_TTL,
+  };
+  res.send(html);
 });
 
 app.get("/result/:hash", async (req, res, next) => {
+  if (req.path in inMemoryCache && inMemoryCache[req.path].ttl > Date.now()) {
+    addCacheHeaders(res);
+    res.send(inMemoryCache[req.path].html);
+    return;
+  }
   const { hash } = req.params;
   const image = getUploadedImageFromHash(hash);
   const result = downscaleAndAdjust(await processImage(image));
   addCacheHeaders(res);
-  res.send(buildResultPageHtml(result));
+  const html = buildResultPageHtml(result);
+  inMemoryCache[req.path] = {
+    html,
+    ttl: Date.now() + CACHE_TTL,
+  };
+  res.send(html);
 });
 
 async function run() {
