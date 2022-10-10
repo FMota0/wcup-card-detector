@@ -2,9 +2,9 @@ import express from "express";
 import bodyParser from "body-parser";
 import multer from "multer";
 import cors from "cors";
-import fs from "fs";
 import dotenv from "dotenv";
 import compression from "compression";
+import morgan from "morgan";
 
 import {
   uploadImage,
@@ -35,10 +35,11 @@ app.use(cors());
 app.use(multerMid.single("image"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 function addCacheHeaders(res: express.Response) {
   if (process.env.NODE_ENV === "production") {
-    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    res.setHeader("Cache-Control", "public, max-age=3600");
   }
 }
 
