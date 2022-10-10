@@ -5,7 +5,6 @@ import {
   compareStrings,
   convexHull,
   generateRandomColor,
-  genRandomId,
   boundingBox,
 } from "./utils";
 import { Card, cards } from "../data/cards";
@@ -34,7 +33,7 @@ export async function getBucketInfo() {
         detectedPlayers: parseInt(detectedPlayers),
         ...getUploadedImageFromHash(hash),
       };
-    })
+    }).filter((file) => file.detectedPlayers > 0).slice(0, 10),
   };
 }
 
@@ -94,9 +93,10 @@ export function getUploadedImageFromHash(hash: string): UploadedImage {
 
 const DETECTION_THRESHOLD_FRONT = 0.78;
 const DETECTION_THRESHOLD_BACK = 0.92;
-interface DetectedCard extends Card {
+export interface DetectedCard extends Card {
   face: "front" | "back";
 }
+
 export const playersFromText = (text: string) => {
   const words = text.split("\n");
   const detectedCards: DetectedCard[] = [];

@@ -1,25 +1,23 @@
 import stringSimilarity from "string-similarity";
 import { DetectionResult } from "./imageProcessor";
 
-export const genRandomId = () => {
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  );
-};
-
 export const compareStrings = (x: string, y: string) => {
   return stringSimilarity.compareTwoStrings(x.toLowerCase(), y.toLowerCase());
 };
 
-function cross(o: any, a: any, b: any) {
+export interface Point {
+  x: number;
+  y: number;
+}
+
+function cross(o: Point, a: Point, b: Point) {
   return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
 }
 
-export function convexHull(points: any[]) {
+export function convexHull(points: Point[]) {
   // https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain
   points.sort((a, b) => a.x - b.x);
-  const lower = [];
+  const lower: Point[] = [];
   for (const point of points) {
     while (
       lower.length >= 2 &&
@@ -126,7 +124,7 @@ const TAILWIND_COLOR_TOKENS = [
   "rose",
 ];
 
-const TAILWIND_COLOR_WEIGHTS = ["500", "600", "700", "800", "900"];
+const TAILWIND_COLOR_WEIGHTS = ["100", "200", "300", "400"];
 
 export function generateRandomColor() {
   const color =
