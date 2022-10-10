@@ -18,7 +18,7 @@ function html(body: string, script: string = "") {
   <head>
     <meta charset="utf-8" />
     <title>Detector de cartas da copa</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/styles/style.css" rel="stylesheet">
     <script type="text/javascript">
       ${script}
     </script>

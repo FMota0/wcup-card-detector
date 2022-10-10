@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import compression from "compression";
 import morgan from "morgan";
+import path from "path";
 
 import {
   uploadImage,
@@ -37,6 +38,7 @@ app.use(cors());
 app.use(multerMid.single("image"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 const CACHE_DURATION = 60 * 60;

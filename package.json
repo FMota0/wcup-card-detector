@@ -8,8 +8,9 @@
   "scripts": {
     "start": "yarn build && node dist/app.js",
     "dev": "nodemon app.ts",
-    "build": "tsc",
-    "build-card-list": "ts-node scripts/buildCardList.ts"
+    "build": "yarn tailwind:css && tsc && cp -r public/ dist/public",
+    "build-card-list": "ts-node scripts/buildCardList.ts",
+    "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css"
   },
   "dependencies": {
     "@google-cloud/storage": "^6.5.0",
@@ -30,7 +31,11 @@
     "@types/multer": "^1.4.7",
     "@types/sharp": "^0.31.0",
     "@types/string-similarity": "^4.0.0",
+    "autoprefixer": "^10.4.12",
     "nodemon": "^2.0.20",
+    "postcss": "^8.4.17",
+    "postcss-cli": "^10.0.0",
+    "tailwindcss": "^3.1.8",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   }
