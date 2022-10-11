@@ -2,17 +2,21 @@ import crypto from "crypto";
 import sharp from "sharp";
 import { storage, visionClient } from "./cloudClients";
 import {
-  compareStrings,
   convexHull,
   generateRandomColor,
   boundingBox,
 } from "./utils";
-import { Card, cards } from "../data/cards";
+import * as cache from "./cache";
+import { cardsFromText } from "./detector/cardsFromText";
 
 const IMAGE_PREFIX = "img_";
 const TEXT_PREFIX = "txt_";
 const META_PREFIX = "meta_";
 const STORAGE_BASE_URL = "https://storage.googleapis.com";
+const IMAGE_QUALITY = 70;
+const IMAGE_RESIZED_HEIGHT = 800;
+const HOME_VISIBLE_LINKS = 6;
+const withVision = process.env.WITH_VISION === "true";
 
 function getBucketName() {
   return process.env.BUCKET_NAME ?? "my-bucket";
@@ -33,7 +37,7 @@ export async function getBucketInfo() {
         detectedPlayers: parseInt(detectedPlayers),
         ...getUploadedImageFromHash(hash),
       };
-    }).filter((file) => file.detectedPlayers > 0).slice(0, 10),
+    }).filter((file) => file.detectedPlayers > 0).slice(0, HOME_VISIBLE_LINKS),
   };
 }
 
@@ -49,6 +53,10 @@ async function checkBucketLimit() {
   }
 }
 
+function buildImageName(hash: string) {
+  return `${IMAGE_PREFIX}${hash}.webp`;
+}
+
 export async function uploadImage(file: Express.Multer.File) {
   await checkBucketLimit();
 
@@ -58,13 +66,13 @@ export async function uploadImage(file: Express.Multer.File) {
     .createHash("sha256")
     .update(file.buffer)
     .digest("hex");
-  const newFileName = `${IMAGE_PREFIX}${fileHash}`;
+  const newFileName = buildImageName(fileHash);
   const destFile = bucket.file(newFileName);
 
   const [exists] = await destFile.exists();
 
   if (!exists) {
-    const processedBuffer = await sharp(file.buffer).rotate().jpeg({ quality: 70 }).toBuffer();
+    const processedBuffer = await sharp(file.buffer).rotate().webp({ quality: IMAGE_QUALITY }).resize(undefined, IMAGE_RESIZED_HEIGHT).toBuffer();
     await destFile.save(processedBuffer, {
       metadata: {
         contentType: file.mimetype,
@@ -86,61 +94,12 @@ export type UploadedImage = Awaited<ReturnType<typeof uploadImage>>;
 export function getUploadedImageFromHash(hash: string): UploadedImage {
   return {
     file: `${IMAGE_PREFIX}${hash}`,
-    url: `${STORAGE_BASE_URL}/${getBucketName()}/${IMAGE_PREFIX}${hash}`,
+    url: `${STORAGE_BASE_URL}/${getBucketName()}/${buildImageName(hash)}`,
     hash,
   };
 }
 
-const DETECTION_THRESHOLD_FRONT = 0.78;
-const DETECTION_THRESHOLD_BACK = 0.92;
-export interface DetectedCard extends Card {
-  face: "front" | "back";
-}
 
-export const playersFromText = (text: string) => {
-  const words = text.split("\n");
-  const detectedCards: DetectedCard[] = [];
-  for (const word of words) {
-    let biggest = 0,
-      biggestCard: Card | null = null, face: "front" | "back" | null = null;
-    for (const card of cards) {
-      const similarityFront = compareStrings(word, card.name);
-      const similarityBack = compareStrings(word, card.id);
-      const similarity = Math.max(similarityFront, similarityBack);
-      if (similarity > biggest && (similarityFront > DETECTION_THRESHOLD_FRONT || similarityBack > DETECTION_THRESHOLD_BACK)) {
-        biggest = similarity;
-        biggestCard = card;
-        face = similarityFront > DETECTION_THRESHOLD_FRONT ? "front" : "back";
-      }
-    }      
-    if (biggestCard && face) {
-      detectedCards.push({
-        ...biggestCard,
-        face,
-      });
-    }
-  }
-  const uniqueCards: DetectedCard[] = [];
-  const repeatedCards: DetectedCard[] = [];
-  const counter = {};
-  for (const card of detectedCards) {
-    counter[card.id] = (counter[card.id] ?? 0) + 1;
-  }
-  for (const [key, value] of Object.entries(counter)) {
-    const card = detectedCards.find((card) => card.id === key);
-    if (card) {
-      if (value === 1) {
-        uniqueCards.push(card);
-      } else {
-        repeatedCards.push(card);
-      }
-    }
-  }
-  return {
-    uniqueCards,
-    repeatedCards,
-  };
-};
 
 export async function uploadMetadata(
   hash: string,
@@ -174,7 +133,7 @@ export async function processImage(image: UploadedImage) {
   await checkBucketLimit();
   const result = await detectTextFromImage(image);
   const fullText = result?.fullTextAnnotation?.text ?? "";
-  const { uniqueCards, repeatedCards } = playersFromText(fullText);
+  const { uniqueCards, repeatedCards } = cardsFromText(fullText);
   const players = [...uniqueCards, ...repeatedCards];
   const textAnnotations = result?.textAnnotations ?? [];
   const uniqueCardsPolygons = uniqueCards.map((player) => {
@@ -228,7 +187,7 @@ export async function processImage(image: UploadedImage) {
       height,
     },
     repeatedCardsPolygons,
-    __vision: result,
+    ...(withVision ? { __vision: result } : {}),
   };
 
   await uploadMetadata(image.hash, {
@@ -239,3 +198,13 @@ export async function processImage(image: UploadedImage) {
 }
 
 export type DetectionResult = Awaited<ReturnType<typeof processImage>>;
+
+export async function cachedProcessImage(hash: string) {
+  const inCache = cache.get<DetectionResult>(hash);
+  if (inCache) {
+    return inCache;
+  }
+  const result = await processImage(getUploadedImageFromHash(hash));
+  cache.set(hash, result);
+  return result;
+}

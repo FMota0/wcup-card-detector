@@ -1,7 +1,7 @@
 **/node_modules
 **/imgs
 **/dist
-.env.local
+.env
 **/config
 secrets.json
 **/samples

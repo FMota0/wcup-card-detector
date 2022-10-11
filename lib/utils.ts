@@ -56,26 +56,10 @@ export function boundingBox(points: any[]) {
 
 export type BoundingBox = ReturnType<typeof boundingBox>;
 
-function getDownscaleFactor(
-  imageWidth: number,
-  imageHeight: number,
-  maxWidth: number,
-  maxHeight: number
-) {
-  const WIDTH_EXTRA_SPACE = 50;
-  const HEIGHT_EXTRA_SPACE = 220;
-  const widthFactor = (maxWidth - WIDTH_EXTRA_SPACE) / imageWidth;
-  const heightFactor = (maxHeight - HEIGHT_EXTRA_SPACE) / imageHeight;
-  return Math.min(widthFactor, heightFactor);
-}
-
-export function downscaleAndAdjust(result: DetectionResult, resultWidth: number, resultHeight: number): DetectionResult {
-  const downscaleFactor = getDownscaleFactor(
-    result.textBox.width,
-    result.textBox.height,
-    resultWidth,
-    resultHeight
-  );
+// Not a real downscaling, just a way to make the image smaller in the first load
+// and also shift the content to be centered
+export function downscaleAndAdjust(result: DetectionResult): DetectionResult {
+  const downscaleFactor = 0.5;
 
   const textBox = {
     x: result.textBox.x * downscaleFactor,

@@ -6,8 +6,8 @@
   "author": "Felipe Mota <fmota@plasmic.app>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && node dist/app.js",
-    "dev": "nodemon app.ts",
+    "start": "yarn build && node -r dotenv/config dist/app.js",
+    "dev": "nodemon -r dotenv/config app.ts",
     "build": "yarn tailwind:css && tsc && cp -r public/ dist/public",
     "build-card-list": "ts-node scripts/buildCardList.ts",
     "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css"

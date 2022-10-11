@@ -23,3 +23,6 @@ export function set<T>(key: string, content: T) {
   };
 }
 
+export function remove(key: string) {
+  delete inMemoryCache[key];
+}
