@@ -32,12 +32,12 @@ export function htmlImagePicker() {
 }
 
 export function htmlButton(text: string) {
-  return `<button class="w-full font-bold py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-700" type="submit">${text}</button>`
+  return `<button class="w-full font-bold py-2 px-4 rounded bg-blue-700 text-white hover:bg-blue-800" type="submit">${text}</button>`
 }
 
 const LOGO_WIDTH = 313;
 const LOGO_HEIGTH = 262;
 
 export function htmlLogo(factor = 1) {
-  return `<img width="${LOGO_WIDTH * factor}" height="${LOGO_HEIGTH * factor}" src="/images/logo.webp" />`
+  return `<img alt="Logo" width="${LOGO_WIDTH * factor}" height="${LOGO_HEIGTH * factor}" src="/images/logo.webp" />`
 }
