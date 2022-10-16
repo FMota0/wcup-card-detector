@@ -1,5 +1,5 @@
 import { BucketInfo } from "../../imageProcessor";
-import { htmlButton, htmlCountryFlag, htmlFileLink, htmlImagePicker, htmlLink } from "../components";
+import { htmlButton, htmlCountryFlag, htmlFileLink, htmlImagePicker, htmlLink, htmlLogo } from "../components";
 import { html } from "../html";
 
 function buildHomePageUploadList(bucketInfo: BucketInfo) {
@@ -35,10 +35,7 @@ export function buildHomePageHtml(bucketInfo: BucketInfo) {
   <div
     class="h-full flex flex-col items-center"
   >
-    <div class="h-64 flex items-center gap-x-2 pb-4">
-      <div class="text-4xl">Detector</div>
-      ${htmlCountryFlag("Brazil", "64x48")}
-    </div>
+    ${htmlLogo()}
     <form
       id="upload-form"
       method="post"

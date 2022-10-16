@@ -1,7 +1,7 @@
 import { DetectionResult } from "../../../imageProcessor";
 import { BoundingBox, Point } from "../../../utils";
 import { html } from "../../html";
-import { htmlButton, htmlCountryFlag } from "../../components";
+import { htmlButton, htmlCountryFlag, htmlLogo } from "../../components";
 import { cssCardClass } from "../../utils";
 import { resultPageScript } from "../../scripts/result";
 
@@ -64,6 +64,11 @@ function uploadedImage(url: string, imgBox: BoundingBox, textBox: BoundingBox) {
 
 export function buildResultPageHtml(result: DetectionResult) {
   return html(`
+  <div class="z-50 absolute top-0 left-0 right-0">
+    <div class="w-full flex items-center justify-center">
+      ${htmlLogo(0.3)}
+    </div>
+  </div>
   <div class="h-full flex flex-col items-center justify-between">
     <div id="result-content" class="h-full flex items-center justify-center">
       <div id="result-wrapper" class="relative overflow-hidden" style="width: ${
