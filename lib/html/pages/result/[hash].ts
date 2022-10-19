@@ -37,7 +37,7 @@ function detectionAreas(result: DetectionResult) {
 function buildLegend(result: DetectionResult) {
   return `
   <div id="legend" class="w-full max-h-40 p-4 bg-zinc-800 flex flex-col align-center gap-y-2 overflow-x-hidden overflow-y-auto text-sm lg:text-base">
-    <p class="font-bold">${result.players.length} cartas diferents detectadas:</p>
+    <p class="font-bold">${result.players.length} cartas diferentes detectadas:</p>
     <div class="flex flex-wrap gap-y-1">
       ${result.players
         .map((player) => {

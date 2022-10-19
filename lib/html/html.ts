@@ -20,7 +20,6 @@ export function html(body: string, script: string = "") {
     <meta name="description" content="Detecta figurinhas da copa do mundo" />
     <meta property="og:title" content="Detector de figurinhas da copa do mundo " />
     <meta property="og:description" content="Detectando figurinhas da copa do mundo usando Google Cloud Vision" />
-    <meta property="og:image" content="" />
     <title>Detector de figurinhas</title>
     <link href="/styles/style.css" rel="stylesheet">
     // https://www.favicon-generator.org/
@@ -60,7 +59,7 @@ export function html(body: string, script: string = "") {
     </style>
   </head>
   <body>
-    <div id="root" class="flex flex-col bg-neutral-900 text-white overflow-hidden text-base" style="background-image: url('${BACKGROUND_IMAGE_URL}');">
+    <div id="root" class="flex flex-col bg-neutral-900 text-white text-base" style="background-image: url('${BACKGROUND_IMAGE_URL}');">
       ${body}
     </div>
   </body>
